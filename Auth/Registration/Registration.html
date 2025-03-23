@@ -110,7 +110,39 @@
                             </div>
                             <div class="form-check mb-3">
                                 <input class="form-check-input" type="checkbox" id="agree">
-                                <label class="form-check-label" for="agree">AGREE TO THE TERMS</label>
+                                <label class="form-check-label" for="agree">
+                                    I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">terms & conditions</a>
+                                </label>
+                                <div class="modal fade" id="termsModal" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-scrollable">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title">Terms & Conditions</h5>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h6>Welcome to Our Platform!</h6>
+                                            <p>
+                                              By registering on this website, you agree to our general terms of service and privacy policy.
+                                              This includes agreeing to use our platform responsibly and respectfully.
+                                            </p>
+                                            <p>
+                                              Please note that this is a placeholder for the official Terms & Conditions, which will be added soon.
+                                              Until then, use of this service implies your acceptance of basic principles of user conduct and data handling.
+                                            </p>
+                                            <ul>
+                                              <li>We do not sell your data.</li>
+                                              <li>We expect respectful behavior from all users.</li>
+                                              <li>You are responsible for the security of your own account.</li>
+                                            </ul>
+                                            <p>
+                                              If you have any questions, please contact us via the contact form or email.
+                                            </p>
+                                            <p class="text-muted"><small>Last updated: March 2025</small></p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
                             </div>
                             <button type="submit" class="btn btn-dark w-100">Submit</button>
                             

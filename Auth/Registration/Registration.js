@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+
+  // Configuring validation of nameInput
   const nameInput = document.getElementById('nameInput');
   const nameIcon = document.getElementById('nameIcon');
   const nameError = document.getElementById('nameError');
@@ -24,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-
+  // Configuring validation of surnameInput
   const surnameInput = document.getElementById('surnameInput');
   const surnameIcon = document.getElementById('surnameIcon');
   const surnameError = document.getElementById('surnameError');
@@ -50,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 
-
+  // Configuring validation of emailInput
   const emailInput = document.getElementById('emailInput');
   const emailIcon = document.getElementById('emailIcon');
   const emailError = document.getElementById('emailError');
@@ -76,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 
-
+  // Configuring validation of passwordInput
   const passwordInput = document.getElementById('passwordInput');
   const passwordIcon = document.getElementById('passwordIcon');
   const passwordError = document.getElementById('passwordError');
@@ -102,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 
-
+  // Configuring validation of repeatPasswordInput
   const repeatPasswordInput = document.getElementById('repeatPasswordInput');
   const repeatPasswordIcon = document.getElementById('repeatPasswordIcon');
   const repeatPasswordError = document.getElementById('repeatPasswordError');
@@ -128,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 
-
+  // Configuring the password view
   const togglePassword = document.getElementById('togglePassword');
 
   togglePassword.addEventListener('mousedown', function () {
@@ -162,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-
+// Optional functions for first name and surname
 function isFirstLetterUppercase(str) {
   return str.charAt(0) === str.charAt(0).toUpperCase();
 }
@@ -173,7 +175,6 @@ function validName(name) {
 }
 
 function getNameError(nameInput) {
-
   const value = nameInput.value.trim();
 
   if (value.length === 0) return 'Name is required';
@@ -185,12 +186,11 @@ function getNameError(nameInput) {
 
 
 
+// Optional functions for email
 function validateEmail(email) {
   const emailPattern = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
   return emailPattern.test(email);
 }
-
-
 
 function getEmailError(emailInput) {
   const value = emailInput.value.trim();
@@ -206,7 +206,7 @@ function getEmailError(emailInput) {
 
 
 
-
+// Optional functions for password
 function hasUppercase(str) {
   return /[A-Z]/.test(str);
 }
@@ -235,7 +235,6 @@ function getPasswordError(passwordInput) {
 
   return '';
 }
-
 
 function getRepeatPasswordError(passwordInput, repeatPasswordInput) {
   const pass = passwordInput.value.trim();

@@ -10,6 +10,13 @@
     filter: invert(1); /* Делаем иконку белой */
 }
 
+.navbar-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
 .navbar .nav-link {
     color: white !important; /* Цвет текста ссылок */
 }

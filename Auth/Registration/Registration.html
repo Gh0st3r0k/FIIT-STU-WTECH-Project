@@ -1,8 +1,11 @@
 <!doctype html>
 <html lang="en">
   <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Overhead -->
     <title>Registration</title>
     <link rel="icon" type="image/png" href="../../img/logo.png">
 
@@ -15,19 +18,26 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-
+    <!-- Custom Scripts -->
     <script src="Registration.js" defer></script>
+
   </head>
+
   <body>
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
         <div class="container-fluid">
-            <a href="#" class="navbar-brand"><img src="../../img/logo.png" alt="Icone" width="35" height="35"></a>
+            <a href="#" class="navbar-brand">
+                <img src="../../img/logo.png" alt="Icone" width="35" height="35">
+                <span class="navbar-title ms-3">InfyGo</span>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" title="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
+
+                <!-- li class => active |=> this is the selected menu -->
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a href="#" class="nav-link" title="Link of Products">Products</a>
@@ -60,10 +70,10 @@
             <div class="row justify-content-center">
                 <div class="col-10 col-sm-6 col-md-6 col-lg-6 col-xl-4">
                     <div class="bg-white ps-4 pe-4 pt-3 pb-3 rounded shadow">
-                        <h3 class="text-center mb-2 pe-4">Join Us!</h3>
+                        <h3 class="text-center mb-2">Join Us!</h3>
                         <form autocomplete="on">
                             <div class="mb-2">
-                                <p style="font-size: 15px; margin-bottom: 0;">Name</p>
+                                <p class="content-text">Name</p>
                                 <div class="position-relative input-wrapper">
                                     <input type="text" class="form-control validated-input" placeholder="Name" id="nameInput" name="name" autocomplete="name">
                                     <span class="validation-icon" id="nameIcon"></span>
@@ -71,7 +81,7 @@
                                 <div class="invalid-feedback d-block ms-2" id="nameError"></div>
                             </div>
                             <div class="mb-2">
-                                <p style="font-size: 15px; margin-bottom: 0;">Surname</p>
+                                <p class="content-text">Surname</p>
                                 <div class="position-relative input-wrapper">
                                     <input type="text" class="form-control validated-input" placeholder="Surname" id="surnameInput" name="name" autocomplete="name">
                                     <span class="validation-icon valid" id="surnameIcon"></span>
@@ -79,7 +89,7 @@
                                 <div class="invalid-feedback d-block ms-2" id="surnameError"></div>
                             </div>
                             <div class="mb-2">
-                                <p style="font-size: 15px; margin-bottom: 0;">Email</p>
+                                <p class="content-text">Email</p>
                                 <div class="position-relative input-wrapper">
                                     <input type="email" class="form-control validated-input" placeholder="Email" id="emailInput" name="email" autocomplete="email">
                                     <span class="validation-icon" id="emailIcon"></span>
@@ -87,7 +97,7 @@
                                 <div class="invalid-feedback d-block ms-2" id="emailError"></div>
                             </div>
                             <div class="mb-2">
-                                <p style="font-size: 15px; margin-bottom: 0;">Password</p>
+                                <p class="content-text">Password</p>
                                 <div class="position-relative input-wrapper">
                                     <input type="password" class="form-control validated-password-input" placeholder="Password" id="passwordInput" name="password" autocomplete="new-password">
                                     <span class="toggle-password" id="togglePassword">
@@ -98,7 +108,7 @@
                                 <div class="invalid-feedback d-block ms-2" id="passwordError"></div>
                             </div>
                             <div class="mb-2">
-                                <p style="font-size: 15px; margin-bottom: 0;">Repeat password</p>
+                                <p class="content-text">Repeat password</p>
                                 <div class="position-relative input-wrapper">
                                     <input type="password" class="form-control validated-password-input" placeholder="Password" id="repeatPasswordInput" name="password" autocomplete="new-password">
                                     <span class="toggle-password" id="toggleRepeatPassword">
@@ -145,7 +155,6 @@
                                   </div>
                             </div>
                             <button type="submit" class="btn btn-dark w-100">Submit</button>
-                            
                         </form>
                     </div>
                 </div>

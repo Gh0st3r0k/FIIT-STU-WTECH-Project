@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   const surnameInput = document.getElementById('surnameInput');
-  const surnameIcon = document.getElementById('surenameIcon');
+  const surnameIcon = document.getElementById('surnameIcon');
   const surnameError = document.getElementById('surnameError');
 
   surnameInput.addEventListener('input', function () {

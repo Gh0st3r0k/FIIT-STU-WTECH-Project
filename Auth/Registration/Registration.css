@@ -147,6 +147,10 @@ footer {
   .validated-input {
     padding-right: 2.5rem; /* чтобы текст не налезал на иконку */
   }
+
+  .validated-password-input {
+    padding-right: 4rem; /* чтобы текст не налезал на иконку */
+  }
   
   .validation-icon {
     position: absolute;
@@ -160,14 +164,26 @@ footer {
     z-index: 2; /* выше текста */
   }
   
-  .validation-icon.valid {
+  .validation-icon.valid, .validation-password-icon.valid {
     color: green;
     opacity: 1; /* 👈 покажем зелёную иконку */
   }
   
-  .validation-icon.invalid {
+  .validation-icon.invalid, .validation-password-icon.invalid {
     color: red;
     opacity: 1; /* 👈 покажем красную иконку */
+  }
+
+  .validation-password-icon {
+    position: absolute;
+    top: 50%;
+    right: 36px;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    pointer-events: none;
+    opacity: 0; /* 👈 скрыта по умолчанию */
+    transition: opacity 0.2s ease-in-out;
+    z-index: 2; /* выше текста */
   }
 
   
@@ -182,3 +198,19 @@ footer {
     margin-top: 4px;
   }
   
+
+
+  .toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #6c757d;
+    font-size: 1.1rem;
+    z-index: 3;
+  }
+  
+  .toggle-password:hover {
+    color: #000;
+  }

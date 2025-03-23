@@ -25,24 +25,24 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 
-  const surenameInput = document.getElementById('surenameInput');
-  const surenameIcon = document.getElementById('surenameIcon');
+  const surnameInput = document.getElementById('surnameInput');
+  const surnameIcon = document.getElementById('surenameIcon');
   const surnameError = document.getElementById('surnameError');
 
-  surenameInput.addEventListener('input', function () {
+  surnameInput.addEventListener('input', function () {
 
-    const error = getNameError(surenameInput);
+    const error = getNameError(surnameInput);
 
     if (error === '') {
-      surenameIcon.classList.remove('invalid');
-      surenameIcon.classList.add('valid');
-      surenameIcon.innerHTML = '<i class="fas fa-check-circle"></i>';
+      surnameIcon.classList.remove('invalid');
+      surnameIcon.classList.add('valid');
+      surnameIcon.innerHTML = '<i class="fas fa-check-circle"></i>';
       surnameError.classList.add('d-none');
       surnameError.classList.remove('d-block');
     } else {
-      surenameIcon.classList.remove('valid');
-      surenameIcon.classList.add('invalid');
-      surenameIcon.innerHTML = '<i class="fas fa-times-circle"></i>';
+      surnameIcon.classList.remove('valid');
+      surnameIcon.classList.add('invalid');
+      surnameIcon.innerHTML = '<i class="fas fa-times-circle"></i>';
       surnameError.innerText = error;
       surnameError.classList.remove('d-none');
       surnameError.classList.add('d-block');
@@ -127,6 +127,35 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+
+
+  const togglePassword = document.getElementById('togglePassword');
+
+  togglePassword.addEventListener('mousedown', function () {
+    passwordInput.type = 'text';
+  });
+
+  togglePassword.addEventListener('mouseup', function () {
+    passwordInput.type = 'password';
+  });
+
+  togglePassword.addEventListener('mouseleave', function () {
+    passwordInput.type = 'password';
+  });
+
+  const toggleRepeatPassword = document.getElementById('toggleRepeatPassword');
+
+  toggleRepeatPassword.addEventListener('mousedown', function () {
+    repeatPasswordInput.type = 'text';
+  });
+
+  toggleRepeatPassword.addEventListener('mouseup', function () {
+    repeatPasswordInput.type = 'password';
+  });
+
+  toggleRepeatPassword.addEventListener('mouseleave', function () {
+    repeatPasswordInput.type = 'password';
+  });
 
 });
   

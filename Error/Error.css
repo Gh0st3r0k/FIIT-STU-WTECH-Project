@@ -1,0 +1,54 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+  
+body {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../img/Fon.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+  
+.error-card {
+    background-color: white;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 3rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+}
+  
+.error-card h1 {
+    font-size: 6rem;
+    color: #ff1111;
+    margin-bottom: 0.5rem;
+}
+  
+.error-card h4 {
+    color: #555;
+    margin-bottom: 1rem;
+}
+  
+.error-card p {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}

@@ -67,13 +67,13 @@
             <div class="catalog-name bg-white p-2 w-100 rounded shadow ms-0 me-0 mb-2 mt-1">
                 <div class="d-flex justify-content-between align-items-center flex-wrap ps-4 pe-4">
                   
-                  <!-- Левая часть -->
+                  <!-- Name catalogs -->
                   <div class="d-flex flex-column">
                     <small class="text-muted">Path | dfghvfdghjk | sdfghjkm,l</small>
                     <h2 class="fw-bold mt-1">Catalog name</h2>
                   </div>
               
-                  <!-- Правая часть -->
+                  <!-- User -->
                   <div class="d-flex align-items-center mt-3 mt-md-0">
                     <span class="me-2 fs-5">Name Surname</span>
                     <div class="rounded-circle bg-light p-2">
@@ -89,34 +89,79 @@
                 <!-- Hidden left menu -->
                 <div class="col-md-3 col-lg-2 d-none d-md-block">
                     <div class="sidebar sticky-top p-3 bg-light rounded">
-                        <h5 class="text-center mt-3">Categories</h5>
-
-                        <ul class="nav flex-column mt-4 ps-3">
-
-                            <li class="nav-item mb-3">
-                                <i class="fas fa-headphones fa-lg me-2"></i> Headphones
-                            </li>
-
-                            <li class="nav-item mb-3">
-                                <i class="fas fa-basketball-ball fa-lg me-2"></i> Sport
-                            </li>
-
-                            <li class="nav-item mb-3">
-                                <i class="fas fa-gift fa-lg me-2"></i> Gifts
-                            </li>
-
-                            <li class="nav-item mb-3">
-                                <i class="fas fa-paw fa-lg me-2"></i> Pets
-                            </li>
-
-                            <li class="nav-item mb-3">
-                                <i class="fas fa-magic fa-lg me-2"></i> Cosmetics
-                            </li>
-                            
-                        </ul>
+                        <!-- Keywords -->
+                        <h6 class="fw-bold mb-2">Keywords</h6>
+                        <div class="mb-3 d-flex flex-wrap gap-2">
+                            <span class="badge bg-light text-dark border">Spring <i class="fas fa-times ms-1"></i></span>
+                            <span class="badge bg-light text-dark border">Smart <i class="fas fa-times ms-1"></i></span>
+                            <span class="badge bg-light text-dark border">Modern <i class="fas fa-times ms-1"></i></span>
+                        </div>
+                    
+                        <!-- Checkbox Labels -->
+                        <div class="mb-4">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" title="Value" type="checkbox" checked>
+                                <label class="form-check-label">
+                                    <strong>Label</strong><br><small class="text-muted">Description</small>
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" title="Value" type="checkbox" checked>
+                                <label class="form-check-label">
+                                    <strong>Label</strong><br><small class="text-muted">Description</small>
+                                </label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" title="Value" type="checkbox" checked>
+                                <label class="form-check-label">
+                                    <strong>Label</strong><br><small class="text-muted">Description</small>
+                                </label>
+                            </div>
+                        </div>
+                    
+                        <!-- Price Range -->
+                        <label for="priceRange" class="form-label d-flex justify-content-between">
+                            <span>Label</span><span class="text-muted">$0–100</span>
+                        </label>
+                        <input type="range" class="form-range mb-4" id="priceRange">
+                    
+                        <!-- Color Section -->
+                        <h6 class="fw-bold mt-3 mb-2">Color</h6>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" title="Value" type="checkbox" checked>
+                                <label class="form-check-label">Label</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" title="Value" type="checkbox" checked>
+                                <label class="form-check-label">Label</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" title="Value" type="checkbox" checked>
+                                <label class="form-check-label">Label</label>
+                            </div>
+                        </div>
+                    
+                        <!-- Size Section -->
+                        <h6 class="fw-bold mt-3 mb-2">Size</h6>
+                        <div>
+                            <div class="form-check">
+                                <input class="form-check-input" title="Value" type="checkbox" checked>
+                                <label class="form-check-label">Label</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" title="Value" type="checkbox" checked>
+                                <label class="form-check-label">Label</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" title="Value" type="checkbox" checked>
+                                <label class="form-check-label">Label</label>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
+  
 
 
                 <!-- Content + burger-button -->
@@ -124,43 +169,90 @@
 
                     <!-- Button to open the menu on mobile phones -->
                     <button class="btn btn-category-toggle d-md-none my-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCategories">
-                        ☰ Categories
+                        ☰ Filters
                     </button>
 
                     <!-- Offcanvas menu (mobile) -->
                     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasCategories">
                         
                         <div class="offcanvas-header">
-                            <h5 class="offcanvas-title">Categories</h5>
+                            <h5 class="offcanvas-title">Filters</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" text="...">...</button>
                         </div>
 
                         <div class="offcanvas-body">
-                            <h5 class="text-center mt-3">Popular categories</h5>
-
-                            <ul class="nav flex-column mt-4 ps-3">
-
-                                <li class="nav-item mb-3">
-                                    <i class="fas fa-headphones fa-lg me-2"></i> Headphones
-                                </li>
-
-                                <li class="nav-item mb-3">
-                                    <i class="fas fa-basketball-ball fa-lg me-2"></i> Sport
-                                </li>
-
-                                <li class="nav-item mb-3">
-                                    <i class="fas fa-gift fa-lg me-2"></i> Gifts
-                                </li>
-
-                                <li class="nav-item mb-3">
-                                    <i class="fas fa-paw fa-lg me-2"></i> Pets
-                                </li>
-
-                                <li class="nav-item mb-3">
-                                    <i class="fas fa-magic fa-lg me-2"></i> Cosmetics
-                                </li>  
-
-                            </ul>
+                            <div class="sidebar sticky-top p-3 bg-light rounded">
+                                <!-- Keywords -->
+                                <h6 class="fw-bold mb-2">Keywords</h6>
+                                <div class="mb-3 d-flex flex-wrap gap-2">
+                                    <span class="badge bg-light text-dark border">Spring <i class="fas fa-times ms-1"></i></span>
+                                    <span class="badge bg-light text-dark border">Smart <i class="fas fa-times ms-1"></i></span>
+                                    <span class="badge bg-light text-dark border">Modern <i class="fas fa-times ms-1"></i></span>
+                                </div>
+                            
+                                <!-- Checkbox Labels -->
+                                <div class="mb-4">
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" title="Value" type="checkbox" checked>
+                                        <label class="form-check-label">
+                                            <strong>Label</strong><br><small class="text-muted">Description</small>
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" title="Value" type="checkbox" checked>
+                                        <label class="form-check-label">
+                                            <strong>Label</strong><br><small class="text-muted">Description</small>
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" title="Value" type="checkbox" checked>
+                                        <label class="form-check-label">
+                                            <strong>Label</strong><br><small class="text-muted">Description</small>
+                                        </label>
+                                    </div>
+                                </div>
+                            
+                                <!-- Price Range -->
+                                <label for="priceRange" class="form-label d-flex justify-content-between">
+                                    <span>Label</span><span class="text-muted">$0–100</span>
+                                </label>
+                                <input type="range" class="form-range mb-4" id="priceRange">
+                            
+                                <!-- Color Section -->
+                                <h6 class="fw-bold mt-3 mb-2">Color</h6>
+                                <div class="mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" title="Value" type="checkbox" checked>
+                                        <label class="form-check-label">Label</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" title="Value" type="checkbox" checked>
+                                        <label class="form-check-label">Label</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" title="Value" type="checkbox" checked>
+                                        <label class="form-check-label">Label</label>
+                                    </div>
+                                </div>
+                            
+                                <!-- Size Section -->
+                                <h6 class="fw-bold mt-3 mb-2">Size</h6>
+                                <div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" title="Value" type="checkbox" checked>
+                                        <label class="form-check-label">Label</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" title="Value" type="checkbox" checked>
+                                        <label class="form-check-label">Label</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" title="Value" type="checkbox" checked>
+                                        <label class="form-check-label">Label</label>
+                                    </div>
+                                </div>
+        
+                            </div>
                         </div>
                     </div>
 

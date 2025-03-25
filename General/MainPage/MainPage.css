@@ -164,6 +164,23 @@ body {
 #searchInput {
     max-width: 280px;
 }
+
+
+
+.sort-buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    justify-content: end;
+  }
+  
+  @media (max-width: 768px) {
+    .sort-buttons-grid {
+      grid-template-columns: repeat(2, 1fr);
+      justify-content: center;
+    }
+  }
+  
   
   
   

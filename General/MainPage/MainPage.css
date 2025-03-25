@@ -136,30 +136,34 @@ body {
     background-color: white;
     border-radius: 1rem;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
-  }
+}
 
-  .sidebar {
+.sidebar {
     top: 80px; /* если navbar ~80px */
-  }
+}
 
-  .carousel-inner img {
+.carousel-inner img {
     max-height: 300px;
     object-fit: cover;
-  }
+}
 
-  .btn-category-toggle {
+.btn-category-toggle {
     background-color: white;
     color: #2c2c2c;
     border: none;
     padding: 8px 16px;
     font-size: 1rem;
     border-radius: 5px;
-  }
+}
   
-  .btn-category-toggle:hover {
+.btn-category-toggle:hover {
     background-color: #f1f1f1;
     color: #444;
-  }
+}
+
+#searchInput {
+    max-width: 280px;
+}
   
   
   

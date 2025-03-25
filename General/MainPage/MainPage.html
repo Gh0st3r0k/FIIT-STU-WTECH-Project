@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Overhead -->
-    <title>Mask</title>
+    <title>MainPage</title>
     <link rel="icon" type="image/png" href="../../img/logo.png">
 
     <!-- Bootstrap -->
@@ -16,6 +16,9 @@
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Custom Scripts -->
+    <script src="MainPage.js" defer></script>
   </head>
   <body>
 
@@ -50,7 +53,7 @@
                         <a href="../../Auth/LogIn/LogIn.html" class="nav-link" title="Link of Log In">Log in</a>
                     </li>
                     <li class="nav-item outline-logOut">
-                        <a href="../../Auth/Registration/Registration.html" class="nav-link" title="Link of Log Out">Log out</a>
+                        <a href="../../Auth/Registration/Registration.html" class="nav-link" title="Link of Log Out">Sign In</a>
                     </li>
                 </ul>
             </div>
@@ -58,312 +61,168 @@
     </nav>
 
     <section id="main-content" class="mt-5">
-        <!-- Навбар сверху (остается как есть) -->
 
         <div class="container-fluid">
-        <div class="row">
-            
-            <!-- Скрываемое левое меню -->
-             
-            <div class="col-md-3 col-lg-2 d-none d-md-block">
-                <div class="sidebar sticky-top p-3 bg-light rounded">
-                                    <h5 class="text-center mt-3">Popular categories</h5>
-                <ul class="nav flex-column mt-4 ps-3">
-                    <li class="nav-item mb-3">
-                    <i class="fas fa-headphones fa-lg me-2"></i> Headphones
-                    </li>
-                    <li class="nav-item mb-3">
-                    <i class="fas fa-basketball-ball fa-lg me-2"></i> Sport
-                    </li>
-                    <li class="nav-item mb-3">
-                    <i class="fas fa-gift fa-lg me-2"></i> Gifts
-                    </li>
-                    <li class="nav-item mb-3">
-                        <i class="fas fa-paw fa-lg me-2"></i> Pets
-                      </li>
-                      <li class="nav-item mb-3">
-                        <i class="fas fa-magic fa-lg me-2"></i> Cosmetics
-                      </li>
-                      
-                </ul>
-            </div>
-            </div>
-
-            
-
-
-            
-            <!-- Контент + кнопка-бургер -->
-            <div class="col-md-9 col-lg-10 ms-sm-auto px-4">
-            
-                
-
-
-
-
-
-
-            <div id="productCarousel" class="carousel slide mt-2 mb-4" data-bs-ride="carousel">
-                <div class="carousel-inner rounded shadow">
-                  <div class="carousel-item active">
-                    <img src="../../img/404.png" class="d-block w-100" alt="Sale 1">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="../../img/Fon.png" class="d-block w-100" alt="Sale 2">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="../../img/GveMoney.png" class="d-block w-100" alt="Sale 3">
-                  </div>
-                </div>
-              
-                <!-- Стрелки -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev" title="Previous">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next" title="Next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                </button>
-              </div>
-
-
-
-
-
-
-<!-- Кнопка для открытия меню на мобильных -->
-<button class="btn btn-category-toggle d-md-none my-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCategories">
-    ☰ Categories
-</button>
-
-<!-- Offcanvas меню (мобильное) -->
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasCategories">
-    <div class="offcanvas-header">
-    <h5 class="offcanvas-title">Categories</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" text="...">...</button>
-    </div>
-    <div class="offcanvas-body">
-        <h5 class="text-center mt-3">Popular categories</h5>
-        <ul class="nav flex-column mt-4 ps-3">
-          <li class="nav-item mb-3">
-            <i class="fas fa-headphones fa-lg me-2"></i> Headphones
-          </li>
-          <li class="nav-item mb-3">
-            <i class="fas fa-basketball-ball fa-lg me-2"></i> Sport
-          </li>
-          <li class="nav-item mb-3">
-            <i class="fas fa-gift fa-lg me-2"></i> Gifts
-          </li>
-          <li class="nav-item mb-3">
-            <i class="fas fa-paw fa-lg me-2"></i> Pets
-          </li>
-          <li class="nav-item mb-3">
-            <i class="fas fa-magic fa-lg me-2"></i> Cosmetics
-          </li>                      
-        </ul>
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-            <div class="products-wrapper bg-white p-4 rounded shadow">
-
-            <!-- Здесь фильтры + карточки -->
             <div class="row">
                 
-              
-                <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3">
-                  <div class="card h-100 shadow-sm">
-                    <img src="../../img/Fon.png" class="card-img-top" alt="Bluetooth Speaker">
-                    <div class="card-body text-center">
-                      <h5 class="card-title">Bluetooth Speaker</h5>
-                      <p class="card-text">$29.99</p>
-                      <button class="btn btn-outline-dark">
-                        <i class="fas fa-cart-plus me-1"></i> Add to Cart
-                      </button>
+                <!-- Hidden left menu -->
+                <div class="col-md-3 col-lg-2 d-none d-md-block">
+                    <div class="sidebar sticky-top p-3 bg-light rounded">
+                        <h5 class="text-center mt-3">Categories</h5>
+
+                        <ul class="nav flex-column mt-4 ps-3">
+
+                            <li class="nav-item mb-3">
+                                <i class="fas fa-headphones fa-lg me-2"></i> Headphones
+                            </li>
+
+                            <li class="nav-item mb-3">
+                                <i class="fas fa-basketball-ball fa-lg me-2"></i> Sport
+                            </li>
+
+                            <li class="nav-item mb-3">
+                                <i class="fas fa-gift fa-lg me-2"></i> Gifts
+                            </li>
+
+                            <li class="nav-item mb-3">
+                                <i class="fas fa-paw fa-lg me-2"></i> Pets
+                            </li>
+
+                            <li class="nav-item mb-3">
+                                <i class="fas fa-magic fa-lg me-2"></i> Cosmetics
+                            </li>
+                            
+                        </ul>
+
                     </div>
-                  </div>
                 </div>
-                <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3">
-                    <div class="card h-100 shadow-sm">
-                      <img src="../../img/Fon.png" class="card-img-top" alt="Bluetooth Speaker">
-                      <div class="card-body text-center">
-                        <h5 class="card-title">Bluetooth Speaker</h5>
-                        <p class="card-text">$29.99</p>
-                        <button class="btn btn-outline-dark">
-                          <i class="fas fa-cart-plus me-1"></i> Add to Cart
+
+
+                <!-- Content + burger-button -->
+                <div class="col-md-9 col-lg-10 ms-sm-auto px-4">
+                
+                    <!-- Banner -->
+                    <div id="productCarousel" class="carousel slide mt-2 mb-4" data-bs-ride="carousel">
+                        <div class="carousel-inner rounded shadow">
+
+                            <div class="carousel-item active">
+                                <img src="../../img/404.png" class="d-block w-100" alt="Sale 1">
+                            </div>
+
+                            <div class="carousel-item">
+                                <img src="../../img/Fon.png" class="d-block w-100" alt="Sale 2">
+                            </div>
+
+                            <div class="carousel-item">
+                                <img src="../../img/GveMoney.png" class="d-block w-100" alt="Sale 3">
+                            </div>
+
+                        </div>
+                    
+                        <!-- Arrows -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev" title="Previous">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3">
-                    <div class="card h-100 shadow-sm">
-                      <img src="../../img/Fon.png" class="card-img-top" alt="Bluetooth Speaker">
-                      <div class="card-body text-center">
-                        <h5 class="card-title">Bluetooth Speaker</h5>
-                        <p class="card-text">$29.99</p>
-                        <button class="btn btn-outline-dark">
-                          <i class="fas fa-cart-plus me-1"></i> Add to Cart
+
+                        <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next" title="Next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         </button>
-                      </div>
                     </div>
-                  </div>
-                  <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3">
-                    <div class="card h-100 shadow-sm">
-                      <img src="../../img/Fon.png" class="card-img-top" alt="Bluetooth Speaker">
-                      <div class="card-body text-center">
-                        <h5 class="card-title">Bluetooth Speaker</h5>
-                        <p class="card-text">$29.99</p>
-                        <button class="btn btn-outline-dark">
-                          <i class="fas fa-cart-plus me-1"></i> Add to Cart
-                        </button>
-                      </div>
+
+
+                    <!-- Button to open the menu on mobile phones -->
+                    <button class="btn btn-category-toggle d-md-none my-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCategories">
+                        ☰ Categories
+                    </button>
+
+                    <!-- Offcanvas menu (mobile) -->
+                    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasCategories">
+                        
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title">Categories</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" text="...">...</button>
+                        </div>
+
+                        <div class="offcanvas-body">
+                            <h5 class="text-center mt-3">Popular categories</h5>
+
+                            <ul class="nav flex-column mt-4 ps-3">
+
+                                <li class="nav-item mb-3">
+                                    <i class="fas fa-headphones fa-lg me-2"></i> Headphones
+                                </li>
+
+                                <li class="nav-item mb-3">
+                                    <i class="fas fa-basketball-ball fa-lg me-2"></i> Sport
+                                </li>
+
+                                <li class="nav-item mb-3">
+                                    <i class="fas fa-gift fa-lg me-2"></i> Gifts
+                                </li>
+
+                                <li class="nav-item mb-3">
+                                    <i class="fas fa-paw fa-lg me-2"></i> Pets
+                                </li>
+
+                                <li class="nav-item mb-3">
+                                    <i class="fas fa-magic fa-lg me-2"></i> Cosmetics
+                                </li>  
+
+                            </ul>
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3">
-                    <div class="card h-100 shadow-sm">
-                      <img src="../../img/Fon.png" class="card-img-top" alt="Bluetooth Speaker">
-                      <div class="card-body text-center">
-                        <h5 class="card-title">Bluetooth Speaker</h5>
-                        <p class="card-text">$29.99</p>
-                        <button class="btn btn-outline-dark">
-                          <i class="fas fa-cart-plus me-1"></i> Add to Cart
-                        </button>
-                      </div>
+
+
+                    <!-- Here are the filters + cards -->
+                    <div class="products-wrapper bg-white p-4 rounded shadow">
+
+                        <!-- Filters (Search + Sort) -->
+                        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 mb-4">
+
+                            <!-- Search -->
+                            <div class="input-group rounded-pill border border-1 ps-3 pe-2 py-1" id="searchInput">
+                                <input type="text" class="form-control border-0 bg-transparent" placeholder="Search" />
+                                <span class="input-group-text bg-transparent border-0">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </div>
+                        
+                            <!-- Scrollable sort buttons -->
+                            <div class="d-flex flex-nowrap overflow-auto gap-2 w-100 w-md-auto">
+                                <button type="button" class="btn btn-dark btn-sm fs-6 fs-md-5">New</button>
+                                <button type="button" class="btn btn-light btn-sm text-muted fs-6 fs-md-5">Price ascending</button>
+                                <button type="button" class="btn btn-light btn-sm text-muted fs-6 fs-md-5">Price descending</button>
+                                <button type="button" class="btn btn-light btn-sm text-muted fs-6 fs-md-5">Rating</button>
+                            </div>
+                        
+                        </div>
+  
+  
+                        <!-- Cards products -->
+                        <div class="row" id="productsCard">
+                            
+                            <!-- <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3">
+                                <div class="card h-100 shadow-sm">
+                                    <img src="../../img/Fon.png" class="card-img-top" alt="Bluetooth Speaker">
+                                    <div class="card-body p-1 text-center">
+                                        <h5 class="card-title fs-6 fs-md-5 fs-lg-5 fs-xl-4">Bluetooth Speaker</h5>
+                                        <p class="card-text fs-6 fs-md-5 mb-2 mb-sm-3">$29.99</p>
+                                        <button class="btn btn-outline-dark btn-sm px-3 py-1 fs-6 mb-1">
+                                            <i class="fas fa-cart-plus me-1"></i>
+                                            <span class="d-none d-sm-inline">Add to Cart</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div> -->
+                                            
+                        </div>
+
                     </div>
-                  </div>
-                  <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3">
-                    <div class="card h-100 shadow-sm">
-                      <img src="../../img/Fon.png" class="card-img-top" alt="Bluetooth Speaker">
-                      <div class="card-body text-center">
-                        <h5 class="card-title">Bluetooth Speaker</h5>
-                        <p class="card-text">$29.99</p>
-                        <button class="btn btn-outline-dark">
-                          <i class="fas fa-cart-plus me-1"></i> Add to Cart
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3">
-                    <div class="card h-100 shadow-sm">
-                      <img src="../../img/Fon.png" class="card-img-top" alt="Bluetooth Speaker">
-                      <div class="card-body text-center">
-                        <h5 class="card-title">Bluetooth Speaker</h5>
-                        <p class="card-text">$29.99</p>
-                        <button class="btn btn-outline-dark">
-                          <i class="fas fa-cart-plus me-1"></i> Add to Cart
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3">
-                    <div class="card h-100 shadow-sm">
-                      <img src="../../img/Fon.png" class="card-img-top" alt="Bluetooth Speaker">
-                      <div class="card-body text-center">
-                        <h5 class="card-title">Bluetooth Speaker</h5>
-                        <p class="card-text">$29.99</p>
-                        <button class="btn btn-outline-dark">
-                          <i class="fas fa-cart-plus me-1"></i> Add to Cart
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3">
-                    <div class="card h-100 shadow-sm">
-                      <img src="../../img/Fon.png" class="card-img-top" alt="Bluetooth Speaker">
-                      <div class="card-body text-center">
-                        <h5 class="card-title">Bluetooth Speaker</h5>
-                        <p class="card-text">$29.99</p>
-                        <button class="btn btn-outline-dark">
-                          <i class="fas fa-cart-plus me-1"></i> Add to Cart
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3">
-                    <div class="card h-100 shadow-sm">
-                      <img src="../../img/Fon.png" class="card-img-top" alt="Bluetooth Speaker">
-                      <div class="card-body text-center">
-                        <h5 class="card-title">Bluetooth Speaker</h5>
-                        <p class="card-text">$29.99</p>
-                        <button class="btn btn-outline-dark">
-                          <i class="fas fa-cart-plus me-1"></i> Add to Cart
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3">
-                    <div class="card h-100 shadow-sm">
-                      <img src="../../img/Fon.png" class="card-img-top" alt="Bluetooth Speaker">
-                      <div class="card-body text-center">
-                        <h5 class="card-title">Bluetooth Speaker</h5>
-                        <p class="card-text">$29.99</p>
-                        <button class="btn btn-outline-dark">
-                          <i class="fas fa-cart-plus me-1"></i> Add to Cart
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3">
-                    <div class="card h-100 shadow-sm">
-                      <img src="../../img/Fon.png" class="card-img-top" alt="Bluetooth Speaker">
-                      <div class="card-body text-center">
-                        <h5 class="card-title">Bluetooth Speaker</h5>
-                        <p class="card-text">$29.99</p>
-                        <button class="btn btn-outline-dark">
-                          <i class="fas fa-cart-plus me-1"></i> Add to Cart
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3">
-                    <div class="card h-100 shadow-sm">
-                      <img src="../../img/Fon.png" class="card-img-top" alt="Bluetooth Speaker">
-                      <div class="card-body text-center">
-                        <h5 class="card-title">Bluetooth Speaker</h5>
-                        <p class="card-text">$29.99</p>
-                        <button class="btn btn-outline-dark">
-                          <i class="fas fa-cart-plus me-1"></i> Add to Cart
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3">
-                    <div class="card h-100 shadow-sm">
-                      <img src="../../img/Fon.png" class="card-img-top" alt="Bluetooth Speaker">
-                      <div class="card-body text-center">
-                        <h5 class="card-title">Bluetooth Speaker</h5>
-                        <p class="card-text">$29.99</p>
-                        <button class="btn btn-outline-dark">
-                          <i class="fas fa-cart-plus me-1"></i> Add to Cart
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3">
-                    <div class="card h-100 shadow-sm">
-                      <img src="../../img/Fon.png" class="card-img-top" alt="Bluetooth Speaker">
-                      <div class="card-body text-center">
-                        <h5 class="card-title">Bluetooth Speaker</h5>
-                        <p class="card-text">$29.99</p>
-                        <button class="btn btn-outline-dark">
-                          <i class="fas fa-cart-plus me-1"></i> Add to Cart
-                        </button>
-                      </div>
-                    </div>
-                  </div> 
-                  
-              </div>
-              </div>
-              
+                
+                </div>
+
+
             </div>
-        </div>
         </div>
 
     </section>

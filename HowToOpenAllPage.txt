@@ -1,0 +1,26 @@
+Pages NOT accessible through the website (available only via direct link):
+1) Error Page
+   Location: Error/
+
+2) Admin Registration
+   Location: Auth/Registration/Admin/
+
+3) Admin Catalog Products
+   Location: General/CatalogsProduct/Admin/
+
+
+Pages accessible through the website (linked in navigation):
+4) User Login
+   Location: Auth/LogIn/
+
+5) User Registration
+   Location: Auth/Registration/
+
+6) Contact Page
+   Location: General/Contacts/
+
+7) Main Page (Home)
+   Location: General/MainPage/
+
+8) User Catalog Products
+   Location: General/CatalogsProduct/User/

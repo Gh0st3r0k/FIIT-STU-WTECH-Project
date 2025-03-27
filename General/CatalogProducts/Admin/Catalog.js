@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
     const productsContainer = document.getElementById("productsCard");
   
-    // Количество карточек
+    // Number of cards
     const numberOfCards = 13;
   
-    // HTML шаблон одной карточки
+    // HTML template of one card
     const productCardHTML = `
       <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3">
         <div class="card h-100 shadow-sm">
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
       </div>
     `;
   
-    // Цикл добавления карточек
+    // Add card cycle
     for (let i = 0; i < numberOfCards; i++) {
       productsContainer.insertAdjacentHTML("beforeend", productCardHTML);
     }

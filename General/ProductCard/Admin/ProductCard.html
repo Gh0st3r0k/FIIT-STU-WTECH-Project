@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Product Page</title>
+    <link rel="icon" type="image/png" href="../../../img/logo.png" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="ProductCard.css" />
+
+    <!-- Custom Scripts -->
+    <script src="ProductCard.js" defer></script>
+  </head>
+
+  <body class="body">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-md navbar-light fixed-top">
+      <div class="container-fluid">
+        <a href="../MainPage/MainPage.html" class="navbar-brand">
+          <img src="../../../img/logo.png" alt="Icone" width="40" height="40" />
+          <span class="navbar-title ms-3">InfyGo</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarResponsive"
+          title="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a
+                href="../CatalogProducts/User/Catalog.html"
+                class="nav-link"
+                title="Link of Products"
+                >Products</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" title="Link of Resources"
+                >Resources</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                href="../Contact/Contact.html"
+                class="nav-link"
+                title="Link of MainPage"
+                >Contact</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" title="Link of Basket">Basket</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" title="Link of Theme">Theme</a>
+            </li>
+            <li class="nav-item outline-logIn">
+              <a
+                href="../../Auth/LogIn/LogIn.html"
+                class="nav-link"
+                title="Link of Log In"
+                >Log in</a
+              >
+            </li>
+            <li class="nav-item outline-logOut">
+              <a
+                href="../../Auth/Registration/Registration.html"
+                class="nav-link"
+                title="Link of Log Out"
+                >Sign In</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section id="main-content" class="mt-5">
+      <div class="container">
+        <div class="catalog-name bg-white p-2 rounded shadow mb-4">
+          <div
+            class="d-flex justify-content-between align-items-center flex-wrap ps-4 pe-4"
+          >
+            <div class="d-flex flex-column">
+              <small class="text-muted">Path | dfghvfdghjk | sdfghjkm,l</small>
+              <h2 class="fw-bold mt-1">Catalog name</h2>
+            </div>
+
+            <div class="d-flex align-items-center mt-3 mt-md-0">
+              <span class="me-2 fs-5">Name Surname</span>
+              <div class="rounded-circle bg-light p-2">
+                <i class="fas fa-user fa-lg text-primary"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded shadow p-4 mb-4">
+          <div class="row g-5 align-items-start">
+            <div class="col-md-6">
+              <div
+                class="position-relative border border-primary rounded p-3"
+                style="min-height: 460px"
+              >
+                <button
+                  class="btn btn-sm btn-success position-absolute"
+                  style="top: 10px; right: 50px"
+                  title="Add new image"
+                >
+                  <i class="fas fa-plus"></i>
+                </button>
+                <button
+                  class="btn btn-sm btn-danger position-absolute"
+                  style="top: 10px; right: 10px"
+                  title="Remove image"
+                >
+                  <i class="fas fa-minus"></i>
+                </button>
+
+                <div
+                  class="d-flex align-items-center justify-content-center h-100"
+                >
+                  <button
+                    class="btn btn-link fs-2 text-dark me-3"
+                    id="prevBtn"
+                    aria-label="Previous image"
+                  >
+                    <i class="fa-solid fa-chevron-left"></i>
+                  </button>
+                  <img
+                    id="galleryImg"
+                    src="../../img/dogfood.jpg"
+                    alt="Product Gallery"
+                    class="img-fluid border border-2 rounded"
+                    style="max-height: 400px"
+                  />
+                  <button
+                    class="btn btn-link fs-2 text-dark ms-3"
+                    id="nextBtn"
+                    aria-label="Next image"
+                  >
+                    <i class="fa-solid fa-chevron-right"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="d-flex align-items-center justify-content-between">
+                <h3 class="mb-3" contenteditable="true">Text Name</h3>
+                <div class="d-flex gap-2">
+                  <button class="btn btn-warning btn-sm" title="Save changes">
+                    Save
+                  </button>
+                  <button class="btn btn-danger btn-sm" title="Delete product">
+                    Delete
+                  </button>
+                </div>
+              </div>
+
+              <div class="d-flex align-items-center mb-3">
+                <h4 class="text-muted me-3 mb-0">$50</h4>
+                <div style="max-width: 120px">
+                  <select class="form-select form-select-sm">
+                    <option value="usd" selected>USD</option>
+                    <option value="eur">EUR</option>
+                    <option value="rub">RUB</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="mb-3 d-flex align-items-center gap-2">
+                <span class="fw-bold">Color:</span>
+                <button
+                  class="btn border-0 p-0"
+                  style="
+                    width: 24px;
+                    height: 24px;
+                    border-radius: 50%;
+                    background-color: #000;
+                  "
+                  title="Black"
+                ></button>
+                <button
+                  class="btn border-0 p-0"
+                  style="
+                    width: 24px;
+                    height: 24px;
+                    border-radius: 50%;
+                    background-color: #f44336;
+                  "
+                  title="Red"
+                ></button>
+                <button
+                  class="btn border-0 p-0"
+                  style="
+                    width: 24px;
+                    height: 24px;
+                    border-radius: 50%;
+                    background-color: #4caf50;
+                  "
+                  title="Green"
+                ></button>
+              </div>
+
+              <div class="mb-3">
+                <label for="quantityInput" class="form-label">Quantity:</label>
+                <input
+                  type="number"
+                  id="quantityInput"
+                  class="form-control w-50"
+                  min="1"
+                  value="1"
+                />
+              </div>
+
+              <div class="d-flex gap-2 mb-3">
+                <button class="btn btn-dark btn-sm px-3 flex-grow-1">
+                  BUY
+                </button>
+                <button
+                  class="btn btn-outline-primary btn-sm"
+                  title="Add to Basket"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+
+              <div
+                class="p-2 border border-primary rounded"
+                contenteditable="true"
+              >
+                <p class="fw-bold mb-1">Nutritious Dog Food</p>
+                <p class="mb-0" style="font-size: 0.9rem">
+                  Our premium dog food uses natural, high-quality ingredients to
+                  keep your pet healthy and full of energy. Suitable for all
+                  breeds and ages.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="bg-white rounded shadow p-4 mb-4 border border-primary"
+          contenteditable="true"
+        >
+          <h3>Product Details</h3>
+          <div class="p-3">
+            <p>
+              Here you can post detailed information about the product:
+              <br />
+              TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+              TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+              TEXT. TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+              TEXT. TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+              TEXT.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded shadow p-4">
+          <h3 class="mb-3">You may like</h3>
+          <div class="row" id="productsCard">
+            <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3">
+              <div class="card h-100 shadow-sm">
+                <img
+                  src="../../img/Fon.png"
+                  class="card-img-top"
+                  alt="Bluetooth Speaker"
+                />
+                <div class="card-body p-1 text-center">
+                  <h5 class="card-title fs-6 fs-md-5 fs-lg-5 fs-xl-4">
+                    Bluetooth Speaker
+                  </h5>
+                  <p class="card-text fs-6 fs-md-5 mb-2 mb-sm-3">$29.99</p>
+                  <button
+                    class="btn btn-outline-dark btn-sm px-3 py-1 fs-6 mb-1"
+                  >
+                    <i class="fas fa-cart-plus me-1"></i>
+                    <span class="d-none d-sm-inline">Add to Cart</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3">
+              <div class="card h-100 shadow-sm">
+                <img
+                  src="../../img/Fon.png"
+                  class="card-img-top"
+                  alt="Headphones"
+                />
+                <div class="card-body p-1 text-center">
+                  <h5 class="card-title fs-6 fs-md-5 fs-lg-5 fs-xl-4">
+                    Headphones
+                  </h5>
+                  <p class="card-text fs-6 fs-md-5 mb-2 mb-sm-3">$39.99</p>
+                  <button
+                    class="btn btn-outline-dark btn-sm px-3 py-1 fs-6 mb-1"
+                  >
+                    <i class="fas fa-cart-plus me-1"></i>
+                    <span class="d-none d-sm-inline">Add to Cart</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3">
+              <div class="card h-100 shadow-sm">
+                <img
+                  src="../../img/Fon.png"
+                  class="card-img-top"
+                  alt="Smart Watch"
+                />
+                <div class="card-body p-1 text-center">
+                  <h5 class="card-title fs-6 fs-md-5 fs-lg-5 fs-xl-4">
+                    Smart Watch
+                  </h5>
+                  <p class="card-text fs-6 fs-md-5 mb-2 mb-sm-3">$99.00</p>
+                  <button
+                    class="btn btn-outline-dark btn-sm px-3 py-1 fs-6 mb-1"
+                  >
+                    <i class="fas fa-cart-plus me-1"></i>
+                    <span class="d-none d-sm-inline">Add to Cart</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3">
+              <div class="card h-100 shadow-sm">
+                <img
+                  src="../../img/Fon.png"
+                  class="card-img-top"
+                  alt="Portable Charger"
+                />
+                <div class="card-body p-1 text-center">
+                  <h5 class="card-title fs-6 fs-md-5 fs-lg-5 fs-xl-4">
+                    Portable Charger
+                  </h5>
+                  <p class="card-text fs-6 fs-md-5 mb-2 mb-sm-3">$19.99</p>
+                  <button
+                    class="btn btn-outline-dark btn-sm px-3 py-1 fs-6 mb-1"
+                  >
+                    <i class="fas fa-cart-plus me-1"></i>
+                    <span class="d-none d-sm-inline">Add to Cart</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="container-fluid bg-light">
+      <div class="container">
+        <div class="row padding text-center">
+          <div class="col-12">
+            <h2>Contacts</h2>
+          </div>
+          <div class="col-12 social padding">
+            <a href="https://x.com/Fiitstu" title="twitter"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a href="https://www.instagram.com/fiitstu/" title="instagram"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="https://www.youtube.com/user/FIITSTU" title="youtube"
+              ><i class="fab fa-youtube"></i
+            ></a>
+            <a href="https://www.facebook.com/FIIT.STU/" title="facebook"
+              ><i class="fab fa-facebook"></i
+            ></a>
+            <a href="https://www.fiit.stuba.sk/" title="google"
+              ><i class="fab fa-google-plus-g"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

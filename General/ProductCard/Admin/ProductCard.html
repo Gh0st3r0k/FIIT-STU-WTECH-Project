@@ -23,7 +23,7 @@
     <!-- Custom Styles -->
     <link rel="stylesheet" href="ProductCard.css" />
 
-    <!-- Custom Scripts -->
+    <!-- Custom Scripts (если нужны) -->
     <script src="ProductCard.js" defer></script>
   </head>
 
@@ -76,7 +76,7 @@
             </li>
             <li class="nav-item outline-logIn">
               <a
-                href="../../Auth/LogIn/LogIn.html"
+                href="../../../Auth/LogIn/LogIn.html"
                 class="nav-link"
                 title="Link of Log In"
                 >Log in</a
@@ -84,7 +84,7 @@
             </li>
             <li class="nav-item outline-logOut">
               <a
-                href="../../Auth/Registration/Registration.html"
+                href="../../../Auth/Registration/Registration.html"
                 class="nav-link"
                 title="Link of Log Out"
                 >Sign In</a
@@ -95,8 +95,10 @@
       </div>
     </nav>
 
+    <!-- Main content -->
     <section id="main-content" class="mt-5">
       <div class="container">
+        <!-- Catalogue name -->
         <div class="catalog-name bg-white p-2 rounded shadow mb-4">
           <div
             class="d-flex justify-content-between align-items-center flex-wrap ps-4 pe-4"
@@ -117,21 +119,20 @@
 
         <div class="bg-white rounded shadow p-4 mb-4">
           <div class="row g-5 align-items-start">
+            <!-- Left side (photo + icons + -) -->
             <div class="col-md-6">
               <div
-                class="position-relative border border-primary rounded p-3"
-                style="min-height: 460px"
+                class="position-relative border border-primary rounded p-3 admin-img-container"
               >
+                <!-- Buttons +/- -->
                 <button
-                  class="btn btn-sm btn-success position-absolute"
-                  style="top: 10px; right: 50px"
+                  class="btn btn-sm btn-success position-absolute add-btn"
                   title="Add new image"
                 >
                   <i class="fas fa-plus"></i>
                 </button>
                 <button
-                  class="btn btn-sm btn-danger position-absolute"
-                  style="top: 10px; right: 10px"
+                  class="btn btn-sm btn-danger position-absolute remove-btn"
                   title="Remove image"
                 >
                   <i class="fas fa-minus"></i>
@@ -149,10 +150,9 @@
                   </button>
                   <img
                     id="galleryImg"
-                    src="../../img/dogfood.jpg"
+                    src="../../../img/dogfood.jpg"
                     alt="Product Gallery"
-                    class="img-fluid border border-2 rounded"
-                    style="max-height: 400px"
+                    class="img-fluid border border-2 rounded product-img"
                   />
                   <button
                     class="btn btn-link fs-2 text-dark ms-3"
@@ -166,61 +166,44 @@
             </div>
 
             <div class="col-md-6">
-              <div class="d-flex align-items-center justify-content-between">
-                <h3 class="mb-3" contenteditable="true">Text Name</h3>
+              <div
+                class="d-flex align-items-center justify-content-between mb-3"
+              >
+                <h3
+                  class="mb-0 product-title border border-primary p-1"
+                  contenteditable="true"
+                >
+                  Text Name
+                </h3>
                 <div class="d-flex gap-2">
                   <button class="btn btn-warning btn-sm" title="Save changes">
                     Save
                   </button>
                   <button class="btn btn-danger btn-sm" title="Delete product">
-                    Delete
+                    Delete product
                   </button>
                 </div>
               </div>
 
               <div class="d-flex align-items-center mb-3">
                 <h4 class="text-muted me-3 mb-0">$50</h4>
-                <div style="max-width: 120px">
-                  <select class="form-select form-select-sm">
+                <div class="currency-select">
+                  <select
+                    class="form-select form-select-sm"
+                    title="change-currency"
+                  >
                     <option value="usd" selected>USD</option>
                     <option value="eur">EUR</option>
-                    <option value="rub">RUB</option>
+                    <option value="uah">UAH</option>
                   </select>
                 </div>
               </div>
 
               <div class="mb-3 d-flex align-items-center gap-2">
                 <span class="fw-bold">Color:</span>
-                <button
-                  class="btn border-0 p-0"
-                  style="
-                    width: 24px;
-                    height: 24px;
-                    border-radius: 50%;
-                    background-color: #000;
-                  "
-                  title="Black"
-                ></button>
-                <button
-                  class="btn border-0 p-0"
-                  style="
-                    width: 24px;
-                    height: 24px;
-                    border-radius: 50%;
-                    background-color: #f44336;
-                  "
-                  title="Red"
-                ></button>
-                <button
-                  class="btn border-0 p-0"
-                  style="
-                    width: 24px;
-                    height: 24px;
-                    border-radius: 50%;
-                    background-color: #4caf50;
-                  "
-                  title="Green"
-                ></button>
+                <button class="btn color-circle-black" title="Black"></button>
+                <button class="btn color-circle-red" title="Red"></button>
+                <button class="btn color-circle-green" title="Green"></button>
               </div>
 
               <div class="mb-3">
@@ -270,11 +253,7 @@
             <p>
               Here you can post detailed information about the product:
               <br />
-              TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-              TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-              TEXT. TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-              TEXT. TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-              TEXT.
+              TEXT TEXT TEXT TEXT...
             </p>
           </div>
         </div>
@@ -285,7 +264,7 @@
             <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3">
               <div class="card h-100 shadow-sm">
                 <img
-                  src="../../img/Fon.png"
+                  src="../../../img/Fon.png"
                   class="card-img-top"
                   alt="Bluetooth Speaker"
                 />
@@ -307,7 +286,7 @@
             <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3">
               <div class="card h-100 shadow-sm">
                 <img
-                  src="../../img/Fon.png"
+                  src="../../../img/Fon.png"
                   class="card-img-top"
                   alt="Headphones"
                 />
@@ -329,7 +308,28 @@
             <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3">
               <div class="card h-100 shadow-sm">
                 <img
-                  src="../../img/Fon.png"
+                  src="../../../img/Fon.png"
+                  class="card-img-top"
+                  alt="Smart Watch"
+                />
+                <div class="card-body p-1 text-center">
+                  <h5 class="card-title fs-6 fs-md-5 fs-lg-5 fs-xl-4">
+                    Smart Watch
+                  </h5>
+                  <p class="card-text fs-6 fs-md-5 mb-2 mb-sm-3">$99.00</p>
+                  <button
+                    class="btn btn-outline-dark btn-sm px-3 py-1 fs-6 mb-1"
+                  >
+                    <i class="fas fa-cart-plus me-1"></i>
+                    <span class="d-none d-sm-inline">Add to Cart</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3">
+              <div class="card h-100 shadow-sm">
+                <img
+                  src="../../../img/Fon.png"
                   class="card-img-top"
                   alt="Smart Watch"
                 />
@@ -351,7 +351,7 @@
             <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3">
               <div class="card h-100 shadow-sm">
                 <img
-                  src="../../img/Fon.png"
+                  src="../../../img/Fon.png"
                   class="card-img-top"
                   alt="Portable Charger"
                 />

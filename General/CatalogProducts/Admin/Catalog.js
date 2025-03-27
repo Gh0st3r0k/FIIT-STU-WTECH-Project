@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const productCardHTML = `
       <div class="col-6 col-sm-4 col-md-4 col-lg-3 mb-3">
         <div class="card h-100 shadow-sm">
-          <a href="../../ProductCard/ProductCard.html" class="text-decoration-none text-dark">
+          <a href="../../ProductCard/Admin/ProductCard.html" class="text-decoration-none text-dark">
             <img src="../../../img/Fon.png" class="card-img-top" alt="Bluetooth Speaker">
             <div class="card-body p-1 text-center">
               <h5 class="card-title fs-6 fs-md-5 fs-lg-5 fs-xl-4">Bluetooth Speaker</h5>

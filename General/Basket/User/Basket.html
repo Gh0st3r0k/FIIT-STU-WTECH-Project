@@ -191,7 +191,9 @@
         </div>
 
         <div class="text-center">
-          <button class="btn btn-dark btn-lg pay-button">PAY</button>
+          <button class="btn btn-dark btn-lg pay-button" data-bs-toggle="modal" data-bs-target="#paymentModal">
+            PAY
+          </button>
         </div>
       </div>
     </section>
@@ -230,5 +232,54 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+
+
+
+    <!-- Modal window with form -->
+    <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fw-bold" id="paymentModalLabel">Delivery form</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p class="fs-5 fw-semibold text-success">Delivery date:<br><span class="text-success">Nov. 26 – Dec. 26</span></p>
+            <form autocomplete="on">
+              <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control" placeholder="Name" name="name" autocomplete="name" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Surname</label>
+                <input type="text" class="form-control" placeholder="Surname" name="name" autocomplete="name" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" placeholder="Email" name="email" autocomplete="email"/>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Address</label>
+                <input type="text" class="form-control" placeholder="Address" name="address" autocomplete="address"/>
+              </div>
+              <div class="row mt-4">
+                <div class="col-12 col-md-6 mb-2">
+                  <button type="button" class="btn btn-dark w-100">
+                    <i class="fab fa-apple-pay me-2"></i> Apple Pay
+                  </button>
+                </div>
+                <div class="col-12 col-md-6">
+                  <button type="button" class="btn btn-success w-100">
+                    <i class="fab fa-google-pay me-2"></i> Android Pay
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   </body>
 </html>

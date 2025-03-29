@@ -1,10 +1,10 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
 }
 
-/* 2) Делаем body флекс-контейнером */
 body {
   display: flex;
   flex-direction: column;
@@ -15,34 +15,42 @@ body {
 }
 
 #main-content {
-  flex: 1 0 auto; 
+  flex: 1 0 auto;
 }
 
-footer.footer {
-  flex-shrink: 0; 
+.footer {
+  flex-shrink: 0;
   padding: 1rem 0;
 }
 
-/* Basket items */
-.basket-item {
-  padding: 0.5rem 0;
+.admin-card {
+  position: relative; 
 }
 
-.basket-item-image {
-  max-width: 80px;
+.add-product-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.user-avatar {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.history-item-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
   border: 1px solid #ccc;
   border-radius: 4px;
-}
-
-.pay-button {
-  width: 50%;
-  max-width: 400px;
 }
 
 .navbar {
   background-color: #2c2c2c !important;
 }
-
 .navbar .navbar-toggler {
   border-color: rgba(255, 255, 255, 0.5);
 }
@@ -123,9 +131,8 @@ footer.footer {
   }
 }
 
-/* Footer social icons */
 .social a {
   font-size: 2em;
-  padding-left: 1em;
-  padding-right: 1em;
+  padding: 0 1em;
+  color: #2c2c2c;
 }

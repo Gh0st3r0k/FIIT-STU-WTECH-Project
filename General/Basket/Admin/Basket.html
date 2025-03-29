@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Basket</title>
-    <link rel="icon" type="image/png" href="../../../img/logo.png" />
+    <title>Admin Orders</title>
+    <link rel="icon" type="image/png" href="../../img/logo.png" />
 
     <!-- Bootstrap CSS -->
     <link
@@ -14,23 +14,31 @@
       crossorigin="anonymous"
     />
 
-    <!-- Font Awesome -->
+    <!-- Font Awesome (иконки) -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
 
-    <!-- Custom Styles -->
+    <!-- Подключаем стили -->
     <link rel="stylesheet" href="Basket.css" />
+
+    <script src="Basket.js" defer></script>
   </head>
 
-  <!-- Удаляем class="body" — используем стили для body напрямую -->
+  <!-- Обратите внимание: никакого class="body" не нужно, 
+       всё управление пойдёт через body {...} в CSS -->
   <body>
-    <!-- Navigation -->
+    <!-- Навигация -->
     <nav class="navbar navbar-expand-md navbar-light fixed-top">
       <div class="container-fluid">
-        <a href="../../MainPage/MainPage.html" class="navbar-brand">
-          <img src="../../../img/logo.png" alt="Icone" width="40" height="40" />
+        <a href="../../../MainPage/MainPage.html" class="navbar-brand">
+          <img
+            src="../../../../img/logo.png"
+            alt="Icon"
+            width="40"
+            height="40"
+          />
           <span class="navbar-title ms-3">InfyGo</span>
         </a>
         <button
@@ -47,49 +55,38 @@
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
               <a
-                href="../../CatalogProducts/User/Catalog.html"
+                href="../../../CatalogProducts/User/Catalog.html"
                 class="nav-link"
-                title="Link of Products"
                 >Products</a
               >
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link" title="Link of Resources"
-                >Resources</a
-              >
+              <a href="#" class="nav-link">Resources</a>
             </li>
             <li class="nav-item">
-              <a
-                href="../../Contact/Contact.html"
-                class="nav-link"
-                title="Link of MainPage"
+              <a href="../../../Contact/Contact.html" class="nav-link"
                 >Contact</a
               >
             </li>
             <li class="nav-item">
-              <a
-                href="../../Basket/User/Basket.html"
-                class="nav-link"
-                title="Link of Basket"
-                >Basket</a
-              >
+              <a href="#" class="nav-link">Basket</a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link" title="Link of Theme">Theme</a>
+              <a href="#" class="nav-link">Theme</a>
             </li>
             <li class="nav-item outline-logIn">
               <a
-                href="../../../Auth/LogIn/LogIn.html"
+                href="../../../../Auth/LogIn/LogIn.html"
                 class="nav-link"
-                title="Link of Log In"
+                title="Log In"
                 >Log in</a
               >
             </li>
             <li class="nav-item outline-logOut">
               <a
-                href="../../../Auth/Registration/Registration.html"
+                href="../../../../Auth/Registration/Registration.html"
                 class="nav-link"
-                title="Link of Log Out"
+                title="Sign In"
                 >Sign In</a
               >
             </li>
@@ -98,120 +95,58 @@
       </div>
     </nav>
 
-    <!-- Основной контент (учёт высоты fixed-top navbar через pt-5 mt-5) -->
     <section id="main-content" class="pt-5 mt-5">
       <div class="container">
-        <!-- Блок с пользователем -->
-        <div class="bg-white p-2 rounded shadow mb-4 user-box">
+        <h2 class="pt-2 pb-2 mb-4 bg-white rounded shadow">All Orders</h2>
+
+        <div class="bg-white rounded shadow p-4 mb-4 admin-order-block">
           <div
-            class="d-flex justify-content-between align-items-center flex-wrap ps-4 pe-4"
+            class="d-flex justify-content-between align-items-center flex-wrap mb-3"
           >
-            <div class="d-flex flex-column">
-              <h2 class="fw-bold mt-1">Your Basket</h2>
+            <h5 class="fw-bold mb-0">User: Name Surname</h5>
+            <button class="btn btn-warning btn-sm status-button">
+              Ready🔄
+            </button>
+          </div>
+          <div class="ms-2">
+            <div class="d-flex justify-content-between mb-2">
+              <span>Text Name (product 1)</span>
+              <span class="fw-bold">x3</span>
             </div>
-
-            <div class="d-flex align-items-center mt-3 mt-md-0">
-              <span class="me-2 fs-5">Name Surname</span>
-              <div class="rounded-circle bg-light p-2">
-                <i class="fas fa-user fa-lg text-primary"></i>
-              </div>
+            <div class="d-flex justify-content-between mb-2">
+              <span>Text Name 2</span>
+              <span class="fw-bold">x2</span>
             </div>
           </div>
         </div>
 
-        <!-- Список товаров -->
-        <div class="bg-white rounded shadow p-4 mb-4">
-          <div class="basket-item row py-3 gx-2 gx-md-4 align-items-center">
-            <div class="col-4 col-sm-2 col-md-1 mb-2 mb-sm-0">
-              <img
-                src="../../../img/test_gal1.jpg"
-                alt="Product Image"
-                class="img-fluid basket-item-image"
-              />
-            </div>
-            <div class="col-8 col-sm-4 col-md-3">
-              <h5 class="fw-bold mb-1">Text Name</h5>
-              <span class="text-muted d-sm-none">$50</span>
-            </div>
-            <div class="col-4 col-sm-2 col-md-2 text-muted d-none d-sm-block">
-              $50
-            </div>
-            <div
-              class="col-4 col-sm-2 col-md-2 ms-auto ms-sm-0 d-flex justify-content-end"
-            >
-              <input
-                title="input_value"
-                type="number"
-                class="form-control form-control-sm text-center basket-qty"
-                value="3"
-                min="1"
-              />
-            </div>
-            <div
-              class="col-4 col-sm-2 col-md-2 text-end fw-bold d-none d-md-block"
-            >
-              $150
-            </div>
-          </div>
-          <hr />
-
-          <div class="basket-item row py-3 gx-2 gx-md-4 align-items-center">
-            <div class="col-4 col-sm-2 col-md-1 mb-2 mb-sm-0">
-              <img
-                src="../../../img/test_gal2.jpg"
-                alt="Product Image"
-                class="img-fluid basket-item-image"
-              />
-            </div>
-            <div class="col-8 col-sm-4 col-md-3">
-              <h5 class="fw-bold mb-1">Text Name 2</h5>
-              <span class="text-muted d-sm-none">$50</span>
-            </div>
-            <div class="col-4 col-sm-2 col-md-2 text-muted d-none d-sm-block">
-              $50
-            </div>
-            <div
-              class="col-4 col-sm-2 col-md-2 ms-auto ms-sm-0 d-flex justify-content-end"
-            >
-              <input
-                title="input_value_2"
-                type="number"
-                class="form-control form-control-sm text-center basket-qty"
-                value="1"
-                min="1"
-              />
-            </div>
-            <div
-              class="col-4 col-sm-2 col-md-2 text-end fw-bold d-none d-md-block"
-            >
-              $50
-            </div>
-          </div>
-          <hr />
-
-          <!-- Итоговая сумма -->
-          <div class="row justify-content-end mt-4">
-            <div class="col-md-4 text-end fw-bold fs-5">Total: $200</div>
-          </div>
-        </div>
-
-        <!-- Кнопка оплатить -->
-        <div class="text-center">
-          <button
-            class="btn btn-dark btn-lg pay-button"
-            data-bs-toggle="modal"
-            data-bs-target="#paymentModal"
+        <div class="bg-white rounded shadow p-4 mb-4 admin-order-block">
+          <div
+            class="d-flex justify-content-between align-items-center flex-wrap mb-3"
           >
-            PAY
-          </button>
+            <h5 class="fw-bold mb-0">User: Another Name</h5>
+            <button class="btn btn-warning btn-sm status-button">
+              Ready🔄
+            </button>
+          </div>
+          <div class="ms-2">
+            <div class="d-flex justify-content-between mb-2">
+              <span>Dog Food Premium</span>
+              <span class="fw-bold">x1</span>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+              <span>Smart Watch</span>
+              <span class="fw-bold">x2</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Footer (липкий) -->
-    <footer class="footer container-fluid bg-light">
+    <!-- Футер -->
+    <footer class="footer bg-light text-center">
       <div class="container">
-        <div class="row padding text-center">
+        <div class="row padding">
           <div class="col-12">
             <h2>Contacts</h2>
           </div>
@@ -242,86 +177,5 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-
-    <div
-      class="modal fade"
-      id="paymentModal"
-      tabindex="-1"
-      aria-labelledby="paymentModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h2 class="modal-title fw-bold" id="paymentModalLabel">
-              Delivery form
-            </h2>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <p class="fs-5 fw-semibold text-success">
-              Delivery date:<br /><span class="text-success"
-                >Nov. 26 – Dec. 26</span
-              >
-            </p>
-            <form>
-              <div class="mb-3">
-                <label class="form-label">Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Name"
-                  name="fname"
-                />
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Surname</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Surname"
-                  name="lname"
-                />
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Email</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  placeholder="Email"
-                  name="email"
-                />
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Address</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Address"
-                  name="address"
-                />
-              </div>
-              <div class="row mt-4">
-                <div class="col-12 col-md-6 mb-2">
-                  <button type="button" class="btn btn-dark w-100">
-                    <i class="fab fa-apple-pay me-2"></i> Apple Pay
-                  </button>
-                </div>
-                <div class="col-12 col-md-6">
-                  <button type="button" class="btn btn-success w-100">
-                    <i class="fab fa-google-pay me-2"></i> Google Pay
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
   </body>
 </html>

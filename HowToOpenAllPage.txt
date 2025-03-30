@@ -8,19 +8,37 @@ Pages NOT accessible through the website (available only via direct link):
 3) Admin Catalog Products
    Location: General/CatalogsProduct/Admin/
 
+4) Admin Product Card 
+   Location: General/ProductCard/Admin/
+
+5) Admin Basket
+Location: General/Basket/Admin/
+
+6) Admin User Page
+Location: General/UserPage/Admin/
+
 
 Pages accessible through the website (linked in navigation):
-4) User Login
+7) User Login
    Location: Auth/LogIn/
 
-5) User Registration
+8) User Registration
    Location: Auth/Registration/
 
-6) Contact Page
+9) Contact Page
    Location: General/Contacts/
 
-7) Main Page (Home)
+10) Main Page (Home)
    Location: General/MainPage/
 
-8) User Catalog Products
+11) User Catalog Products
    Location: General/CatalogsProduct/User/
+
+12) User Basket
+   Location: General/Basket/User/
+
+13) User Page
+   Location: General/UserPage/User/
+
+14) User Product Card
+   Location: General/ProductCard/User/

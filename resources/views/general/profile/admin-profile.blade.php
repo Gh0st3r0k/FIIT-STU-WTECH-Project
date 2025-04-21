@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin User Page</title>
+  <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}" />
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ asset('css/general/profile/admin-profile.css') }}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+
+<body>
+
+  {{-- HEADER --}}
+  <header>
+    @include('layouts.header')
+  </header>
+
+  <section id="main-content" class="pt-5 mt-5">
+    <div class="container">
+      <div class="admin-card bg-white rounded shadow p-4 mb-4 position-relative">
+        <div class="row g-4 align-items-center">
+          <div class="col-md-3 text-center text-md-start">
+            <img src="{{ asset('img/test_gal3.jpg') }}" alt="User Avatar" class="rounded-circle user-avatar" />
+          </div>
+          <div class="col-md-9">
+            <h4 class="fw-normal">Username (Admin)</h4>
+            <p class="text-muted mb-1">admin@mail.com</p>
+            <p class="text-muted">+421 123 456 789</p>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-sm add-product-btn" data-bs-toggle="modal" data-bs-target="#addProductModal">
+          Add Product
+        </button>
+      </div>
+
+      <div class="bg-white rounded shadow p-4">
+        <h3 class="text-uppercase fw-bold fs-4 mb-3">History</h3>
+
+        {{-- Пример истории заказов --}}
+        <div class="mb-4">
+          <h5 class="fw-bold mb-3">User: Name Surname</h5>
+          <div class="d-flex align-items-center border rounded p-2 mb-2">
+            <img src="{{ asset('img/test_gal1.jpg') }}" alt="Product #1" class="history-item-image me-3" />
+            <div class="flex-grow-1">
+              <p class="mb-0 fw-bold">Some old order #1</p>
+            </div>
+            <span class="ms-auto fw-bold">$50</span>
+          </div>
+          <div class="d-flex align-items-center border rounded p-2 mb-2">
+            <img src="{{ asset('img/test_gal2.jpg') }}" alt="Product #2" class="history-item-image me-3" />
+            <div class="flex-grow-1">
+              <p class="mb-0 fw-bold">Some old order #2</p>
+            </div>
+            <span class="ms-auto fw-bold">$99</span>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <h5 class="fw-bold mb-3">User: Another Person</h5>
+          <div class="d-flex align-items-center border rounded p-2 mb-2">
+            <img src="{{ asset('img/test_gal2.jpg') }}" alt="Product #3" class="history-item-image me-3" />
+            <div class="flex-grow-1">
+              <p class="mb-0 fw-bold">Some old order #3</p>
+            </div>
+            <span class="ms-auto fw-bold">$75</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {{-- FOOTER --}}
+  @include('layouts.footer')
+
+  {{-- Modal Add Product --}}
+  <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="addProductModalLabel">Add New Product</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="productName" class="form-label">Product Name</label>
+              <input type="text" class="form-control" id="productName" placeholder="Enter product name" />
+            </div>
+            <div class="mb-3">
+              <label for="productPrice" class="form-label">Price</label>
+              <input type="number" class="form-control" id="productPrice" placeholder="Enter product price" />
+            </div>
+            <div class="mb-3">
+              <label for="productImage" class="form-label">Image URL</label>
+              <input type="text" class="form-control" id="productImage" placeholder="Enter image URL" />
+            </div>
+            <div class="mb-3">
+              <label for="productDescription" class="form-label">Description</label>
+              <textarea class="form-control" id="productDescription" rows="3" placeholder="Enter product description"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-success">Save Product</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

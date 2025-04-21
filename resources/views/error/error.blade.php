@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Error</title>
+    <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}">
+    <link rel="stylesheet" href="{{ asset('css/error/error.css') }}">
+</head>
+<body>
+
+    <div class="error-container">
+        <div class="error-card text-center">
+            <h1 class="display-1">404</h1>
+            <h4 class="mb-3">Page not found</h4>
+            <p class="mb-4">
+                Chances are you got here because of a typo in the page address.<br>
+                Try going back to the home page or contact the site administration.
+            </p>
+            <a href="{{ url('/') }}" class="btn btn-dark">To main page</a>
+            <img src="{{ asset('img/404.png') }}" alt="Error" class="error-image mt-4">
+            <a href="https://http.cat/status/404">Source foro</a>
+        </div>
+    </div>
+
+</body>
+</html>

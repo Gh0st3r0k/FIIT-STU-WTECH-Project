@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\BasketController;
+
 
 
 Route::get('/', function () {
@@ -103,3 +105,23 @@ Route::post('/login', function (Request $request) {
 
     return response()->json(['message' => 'User not found.'], 404);
 });
+
+
+
+Route::get('/user/product-card/{id}', function ($id) {
+    $json = file_get_contents(public_path('data/products.json'));
+    $products = json_decode($json, true);
+
+    $product = collect($products)->firstWhere('id', (int) $id);
+
+    if (!$product) {
+        abort(404, 'Produkt neexistuje.');
+    }
+
+    return view('general.product_card.user-product_card', ['product' => $product]);
+});
+
+
+Route::post('/api/basket/add', [\App\Http\Controllers\BasketController::class, 'add']);
+Route::get('/user/basket', [\App\Http\Controllers\BasketController::class, 'view']);
+

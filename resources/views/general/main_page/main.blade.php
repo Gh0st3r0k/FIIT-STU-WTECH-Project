@@ -10,6 +10,9 @@
   <link rel="stylesheet" href="{{ asset('css/general/main_page/main.css') }}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <script src="{{ asset('js/general/main_page/main.js') }}" defer></script>
+
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
 </head>
 
 <body>
@@ -28,11 +31,11 @@
           <div class="sidebar sticky-top p-3 bg-light rounded">
             <h5 class="text-center mt-3">Categories</h5>
             <ul class="nav flex-column mt-4 ps-3">
-              <li class="nav-item mb-3"><i class="fas fa-headphones fa-lg me-2"></i> Headphones</li>
-              <li class="nav-item mb-3"><i class="fas fa-basketball-ball fa-lg me-2"></i> Sport</li>
-              <li class="nav-item mb-3"><i class="fas fa-gift fa-lg me-2"></i> Gifts</li>
-              <li class="nav-item mb-3"><i class="fas fa-paw fa-lg me-2"></i> Pets</li>
-              <li class="nav-item mb-3"><i class="fas fa-magic fa-lg me-2"></i> Cosmetics</li>
+              <li class="nav-item mb-3 category-filter" data-category="Headphones"><i class="fas fa-headphones fa-lg me-2"></i> Headphones</li>
+              <li class="nav-item mb-3 category-filter" data-category="Sport"><i class="fas fa-basketball-ball fa-lg me-2"></i> Sport</li>
+              <li class="nav-item mb-3 category-filter" data-category="Gifts"><i class="fas fa-gift fa-lg me-2"></i> Gifts</li>
+              <li class="nav-item mb-3 category-filter" data-category="Pets"><i class="fas fa-paw fa-lg me-2"></i> Pets</li>
+              <li class="nav-item mb-3 category-filter" data-category="Cosmetics"><i class="fas fa-magic fa-lg me-2"></i> Cosmetics</li>
             </ul>
           </div>
         </div>
@@ -74,11 +77,11 @@
             <div class="offcanvas-body">
               <h5 class="text-center mt-3">Popular categories</h5>
               <ul class="nav flex-column mt-4 ps-3">
-                <li class="nav-item mb-3"><i class="fas fa-headphones fa-lg me-2"></i> Headphones</li>
-                <li class="nav-item mb-3"><i class="fas fa-basketball-ball fa-lg me-2"></i> Sport</li>
-                <li class="nav-item mb-3"><i class="fas fa-gift fa-lg me-2"></i> Gifts</li>
-                <li class="nav-item mb-3"><i class="fas fa-paw fa-lg me-2"></i> Pets</li>
-                <li class="nav-item mb-3"><i class="fas fa-magic fa-lg me-2"></i> Cosmetics</li>
+                <li class="nav-item mb-3 category-filter" data-category="Headphones"><i class="fas fa-headphones fa-lg me-2"></i> Headphones</li>
+                <li class="nav-item mb-3 category-filter" data-category="Sport"><i class="fas fa-basketball-ball fa-lg me-2"></i> Sport</li>
+                <li class="nav-item mb-3 category-filter" data-category="Gifts"><i class="fas fa-gift fa-lg me-2"></i> Gifts</li>
+                <li class="nav-item mb-3 category-filter" data-category="Pets"><i class="fas fa-paw fa-lg me-2"></i> Pets</li>
+                <li class="nav-item mb-3 category-filter" data-category="Cosmetics"><i class="fas fa-magic fa-lg me-2"></i> Cosmetics</li>
               </ul>
             </div>
           </div>
@@ -96,10 +99,10 @@
 
               {{-- Sort --}}
               <div class="sort-buttons-grid w-100 w-md-auto">
-                <button type="button" class="btn btn-dark btn-sm w-100">New</button>
-                <button type="button" class="btn btn-light btn-sm w-100 text-muted">Price ascending</button>
-                <button type="button" class="btn btn-light btn-sm w-100 text-muted">Price descending</button>
-                <button type="button" class="btn btn-light btn-sm w-100 text-muted">Rating</button>
+                <button id="sort-new" type="button" class="btn btn-dark btn-sm w-100">New</button>
+                <button id="sort-price-asc" type="button" class="btn btn-light btn-sm w-100 text-muted">Price ascending</button>
+                <button id="sort-price-desc" type="button" class="btn btn-light btn-sm w-100 text-muted">Price descending</button>
+                <button id="sort-rating" type="button" class="btn btn-light btn-sm w-100 text-muted">Rating</button>
               </div>
             </div>
 

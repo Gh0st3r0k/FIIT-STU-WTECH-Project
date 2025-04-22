@@ -30,7 +30,8 @@
             <h2 class="fw-bold mt-1">Catalog name</h2>
           </div>
           <div class="d-flex align-items-center mt-3 mt-md-0">
-            <span class="me-2 fs-5">Name Surname</span>
+            @php $user = session('user') ?? ['name' => 'Guest', 'surname' => '']; @endphp
+            <span class="me-2 fs-5">{{ $user['name'] }} {{ $user['surname'] }}</span>
             <div class="rounded-circle bg-light p-2">
               <i class="fas fa-user fa-lg text-primary"></i>
             </div>
@@ -46,17 +47,18 @@
           <div class="col-md-6">
             <div class="d-flex align-items-center justify-content-center">
               <button class="btn btn-link fs-2 text-dark me-3" id="prevBtn"><i class="fa-solid fa-chevron-left"></i></button>
-              <img id="galleryImg" src="{{ asset('img/Fon.png') }}" alt="Product Gallery" class="img-fluid border border-2 rounded product-gallery-img" />
+              <img id="galleryImg" src="{{ $product['image'] }}" alt="Product Gallery" class="img-fluid border border-2 rounded product-gallery-img" />
               <button class="btn btn-link fs-2 text-dark ms-3" id="nextBtn"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
           </div>
 
           {{-- Details --}}
           <div class="col-md-6">
-            <h3 class="mb-3">Text Name</h3>
+            <h3 class="mb-3">{{ $product['name'] }}</h3>
+
 
             <div class="d-flex align-items-center mb-3">
-              <h4 class="text-muted me-3 mb-0">$50</h4>
+            <h4 class="text-muted me-3 mb-0">${{ number_format($product['price'], 2) }}</h4>
               <select class="form-select form-select-sm w-auto">
                 <option value="usd" selected>USD</option>
                 <option value="eur">EUR</option>
@@ -82,8 +84,8 @@
             </div>
 
             <div class="p-2 border rounded">
-              <p class="fw-bold mb-1">Nutritious Dog Food</p>
-              <p class="mb-0">Our premium dog food uses natural, high-quality ingredients to keep your pet healthy and full of energy. Suitable for all breeds and ages.</p>
+              <p class="fw-bold mb-1">{{ $product['name'] }}</p>
+              <p class="mb-0">{{ $product['description'] }}</p>
             </div>
           </div>
         </div>
@@ -93,7 +95,7 @@
       <div class="bg-white rounded shadow p-4 mb-4">
         <h3>Product Details</h3>
         <div class="p-3">
-          <p><strong>TEXT</strong> TEXT TEXT TEXT TEXT TEXT TEXT TEXT...</p>
+          <p class="mb-0">{{ $product['description'] }}</p>
         </div>
       </div>
 

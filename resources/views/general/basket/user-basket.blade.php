@@ -43,45 +43,29 @@
 
       {{-- Product Items --}}
       <div class="bg-white rounded shadow p-4 mb-4">
-        {{-- Item 1 --}}
+      @foreach($items as $item)
         <div class="basket-item row py-3 gx-2 gx-md-4 align-items-center">
           <div class="col-4 col-sm-2 col-md-1">
-            <img src="{{ asset('img/test_gal1.jpg') }}" alt="Product Image" class="img-fluid basket-item-image" />
+            <img src="{{ asset($item['image']) }}" alt="Product Image" class="img-fluid basket-item-image" />
           </div>
           <div class="col-8 col-sm-4 col-md-3">
-            <h5 class="fw-bold mb-1">Text Name</h5>
-            <span class="text-muted d-sm-none">$50</span>
+            <h5 class="fw-bold mb-1">{{ $item['name'] }}</h5>
+            <span class="text-muted d-sm-none">${{ $item['price'] }}</span>
           </div>
-          <div class="col-4 col-sm-2 col-md-2 text-muted d-none d-sm-block">$50</div>
+          <div class="col-4 col-sm-2 col-md-2 text-muted d-none d-sm-block">${{ $item['price'] }}</div>
           <div class="col-4 col-sm-2 col-md-2 ms-auto ms-sm-0 d-flex justify-content-end">
-            {{--TODO: style delete--}}
-            <input title="Quantity" type="number" class="form-control form-control-sm text-center basket-qty" value="3" min="1" style="max-width: 60px" />
+            <input title="Quantity" type="number" class="form-control form-control-sm text-center basket-qty" value="{{ $item['quantity'] }}" min="1" style="max-width: 60px" />
           </div>
-          <div class="col-4 col-sm-2 col-md-2 text-end fw-bold d-none d-md-block">$150</div>
+          <div class="col-4 col-sm-2 col-md-2 text-end fw-bold d-none d-md-block">${{ $item['subtotal'] }}</div>
         </div>
         <hr />
+      @endforeach
 
-        {{-- Item 2 --}}
-        <div class="basket-item row py-3 gx-2 gx-md-4 align-items-center">
-          <div class="col-4 col-sm-2 col-md-1">
-            <img src="{{ asset('img/test_gal2.jpg') }}" alt="Product Image" class="img-fluid basket-item-image" />
-          </div>
-          <div class="col-8 col-sm-4 col-md-3">
-            <h5 class="fw-bold mb-1">Text Name 2</h5>
-            <span class="text-muted d-sm-none">$50</span>
-          </div>
-          <div class="col-4 col-sm-2 col-md-2 text-muted d-none d-sm-block">$50</div>
-          <div class="col-4 col-sm-2 col-md-2 ms-auto ms-sm-0 d-flex justify-content-end">
-            {{--TODO: style delete--}}
-            <input title="Quantity" type="number" class="form-control form-control-sm text-center basket-qty" value="1" min="1" style="max-width: 60px" />
-          </div>
-          <div class="col-4 col-sm-2 col-md-2 text-end fw-bold d-none d-md-block">$50</div>
-        </div>
-        <hr />
 
-        <div class="row justify-content-end mt-4">
-          <div class="col-md-4 text-end fw-bold fs-5">Total: $200</div>
-        </div>
+      <div class="row justify-content-end mt-4">
+        <div class="col-md-4 text-end fw-bold fs-5">Total: ${{ number_format($total, 2) }}</div>
+      </div>
+
       </div>
 
       <div class="text-center">

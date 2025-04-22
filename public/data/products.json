@@ -1,0 +1,63 @@
+[
+    {
+      "id": 1,
+      "name": "Nutritious Dog Food",
+      "description": "Premium dog food with natural ingredients. Keeps your pet healthy and energetic.",
+      "price": 50.00,
+      "image": "../../../img/Fon.png",
+      "rating": 4.8,
+      "isNew": true,
+      "category": "Pets"
+    },
+    {
+      "id": 2,
+      "name": "Organic Cat Kibble",
+      "description": "Balanced cat food for shiny fur and strong bones. Ideal for indoor cats.",
+      "price": 35.90,
+      "image": "../../../img/Fon.png",
+      "rating": 3.0,
+      "isNew": true,
+      "category": "Pets"
+    },
+    {
+      "id": 3,
+      "name": "Deluxe Bird Seed Mix",
+      "description": "High-nutrient blend for parrots and exotic birds. No artificial additives.",
+      "price": 22.49,
+      "image": "../../../img/Fon.png",
+      "rating": 4.0,
+      "isNew": true,
+      "category": "Gifts"
+    },
+    {
+      "id": 4,
+      "name": "Tropical Fish Flakes",
+      "description": "Color-enhancing flakes for tropical fish. Supports immunity and growth.",
+      "price": 12.00,
+      "image": "../../../img/Fon.png",
+      "rating": 5,
+      "isNew": true,
+      "category": "Pets"
+    },
+    {
+      "id": 5,
+      "name": "Chewy Bone Toy",
+      "description": "Durable rubber chew toy for dogs of all sizes. Safe and fun.",
+      "price": 15.75,
+      "image": "../../../img/Fon.png",
+      "rating": 4.8,
+      "isNew": true,
+      "category": "Gifts"
+    },
+    {
+      "id": 6,
+      "name": "Rabbit Bedding Pack",
+      "description": "Soft, absorbent bedding for rabbits and small pets. 100% biodegradable.",
+      "price": 18.90,
+      "image": "../../../img/Fon.png",
+      "rating": 2.5,
+      "isNew": true,
+      "category": "Pets"
+    }
+  ]
+  

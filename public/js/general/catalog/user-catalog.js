@@ -105,8 +105,40 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Кнопки сортировки
+  
   function attachSorting() {
+    const buttons = {
+      "sort-new": "new",
+      "sort-price-asc": "price-asc",
+      "sort-price-desc": "price-desc",
+      "sort-rating": "rating"
+    };
+  
+    Object.entries(buttons).forEach(([id, value]) => {
+      document.getElementById(id).addEventListener("click", () => {
+        activeSort = value;
+        applyFilters();
+        updateSortStyles(id);
+      });
+    });
+  }
+  
+  function updateSortStyles(activeId) {
+    const all = ["sort-new", "sort-price-asc", "sort-price-desc", "sort-rating"];
+    all.forEach(id => {
+      const btn = document.getElementById(id);
+      if (id === activeId) {
+        btn.classList.remove("btn-light", "text-muted");
+        btn.classList.add("btn-dark");
+      } else {
+        btn.classList.remove("btn-dark");
+        btn.classList.add("btn-light", "text-muted");
+      }
+    });
+  }
+
+  // Кнопки сортировки
+  
     document.getElementById("sort-new").addEventListener("click", () => {
       activeSort = "new";
       applyFilters();
@@ -126,7 +158,6 @@ document.addEventListener("DOMContentLoaded", function () {
       activeSort = "rating";
       applyFilters();
     });
-  }
 
   
 });

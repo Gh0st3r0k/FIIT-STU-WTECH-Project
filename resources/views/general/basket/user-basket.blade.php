@@ -6,19 +6,19 @@
   <title>Basket</title>
 
   <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}" />
-  
-  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="{{ asset('css/general/basket/user-basket.css') }}" />
+
+  {{-- CSRF Token --}}
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
+  {{-- Custom JS --}}
+  <script src="{{ asset('js/general/basket/user-basket.js') }}" defer></script>
 </head>
 
 <body class="body">
-  
+
   {{-- HEADER --}}
   <header>
     @include('layouts.header')
@@ -33,7 +33,7 @@
           </div>
           <div class="d-flex align-items-center mt-3 mt-md-0">
             @php $user = session('user') ?? ['name' => 'Guest', 'surname' => '']; @endphp
-            <span class="me-2 fs-5">{{ $user['name'] }} {{ $user['surname'] }}</span>            
+            <span class="me-2 fs-5">{{ $user['name'] }} {{ $user['surname'] }}</span>
             <div class="rounded-circle bg-light p-2">
               <i class="fas fa-user fa-lg text-primary"></i>
             </div>
@@ -43,29 +43,34 @@
 
       {{-- Product Items --}}
       <div class="bg-white rounded shadow p-4 mb-4">
-      @foreach($items as $item)
-        <div class="basket-item row py-3 gx-2 gx-md-4 align-items-center">
-          <div class="col-4 col-sm-2 col-md-1">
-            <img src="{{ asset($item['image']) }}" alt="Product Image" class="img-fluid basket-item-image" />
+        @foreach($items as $item)
+          <div class="basket-item row py-3 gx-2 gx-md-4 align-items-center"
+               data-price="{{ $item['price'] }}"
+               data-product-id="{{ $item['id'] }}">
+            <div class="col-4 col-sm-2 col-md-1">
+              <img src="{{ asset($item['image']) }}" alt="Product Image" class="img-fluid basket-item-image" />
+            </div>
+            <div class="col-8 col-sm-4 col-md-3">
+              <h5 class="fw-bold mb-1">{{ $item['name'] }}</h5>
+              <span class="text-muted d-sm-none">${{ $item['price'] }}</span>
+            </div>
+            <div class="col-4 col-sm-2 col-md-2 text-muted d-none d-sm-block">
+              ${{ $item['price'] }}
+            </div>
+            <div class="col-4 col-sm-2 col-md-2 ms-auto ms-sm-0 d-flex justify-content-end">
+              <input title="Quantity" type="number" class="form-control form-control-sm text-center basket-qty"
+                     value="{{ $item['quantity'] }}" min="0" style="max-width: 60px" />
+            </div>
+            <div class="col-4 col-sm-2 col-md-2 text-end fw-bold d-none d-md-block item-subtotal">
+              ${{ number_format($item['subtotal'], 2) }}
+            </div>
           </div>
-          <div class="col-8 col-sm-4 col-md-3">
-            <h5 class="fw-bold mb-1">{{ $item['name'] }}</h5>
-            <span class="text-muted d-sm-none">${{ $item['price'] }}</span>
-          </div>
-          <div class="col-4 col-sm-2 col-md-2 text-muted d-none d-sm-block">${{ $item['price'] }}</div>
-          <div class="col-4 col-sm-2 col-md-2 ms-auto ms-sm-0 d-flex justify-content-end">
-            <input title="Quantity" type="number" class="form-control form-control-sm text-center basket-qty" value="{{ $item['quantity'] }}" min="1" style="max-width: 60px" />
-          </div>
-          <div class="col-4 col-sm-2 col-md-2 text-end fw-bold d-none d-md-block">${{ $item['subtotal'] }}</div>
+          <hr />
+        @endforeach
+
+        <div class="row justify-content-end mt-4">
+          <div class="col-md-4 text-end fw-bold fs-5">Total: ${{ number_format($total, 2) }}</div>
         </div>
-        <hr />
-      @endforeach
-
-
-      <div class="row justify-content-end mt-4">
-        <div class="col-md-4 text-end fw-bold fs-5">Total: ${{ number_format($total, 2) }}</div>
-      </div>
-
       </div>
 
       <div class="text-center">
@@ -77,10 +82,9 @@
   {{-- FOOTER --}}
   @include('layouts.footer')
 
-  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Modal with Form -->
+  {{-- Modal --}}
   <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -94,20 +98,16 @@
             <span class="text-success">Nov. 26 – Dec. 26</span>
           </p>
           <form>
-            <div class="mb-3"><label class="form-label">Name</label><input type="text" class="form-control" placeholder="Name" name="fname" /></div>
-            <div class="mb-3"><label class="form-label">Surname</label><input type="text" class="form-control" placeholder="Surname" name="lname" /></div>
-            <div class="mb-3"><label class="form-label">Email</label><input type="email" class="form-control" placeholder="Email" name="email" /></div>
-            <div class="mb-3"><label class="form-label">Address</label><input type="text" class="form-control" placeholder="Address" name="address" /></div>
+            <div class="mb-3"><label class="form-label">Name</label><input type="text" class="form-control" name="fname" /></div>
+            <div class="mb-3"><label class="form-label">Surname</label><input type="text" class="form-control" name="lname" /></div>
+            <div class="mb-3"><label class="form-label">Email</label><input type="email" class="form-control" name="email" /></div>
+            <div class="mb-3"><label class="form-label">Address</label><input type="text" class="form-control" name="address" /></div>
             <div class="row mt-4">
               <div class="col-12 col-md-6 mb-2">
-                <button type="button" class="btn btn-dark w-100">
-                  <i class="fab fa-apple-pay me-2"></i> Apple Pay
-                </button>
+                <button type="button" class="btn btn-dark w-100"><i class="fab fa-apple-pay me-2"></i> Apple Pay</button>
               </div>
               <div class="col-12 col-md-6">
-                <button type="button" class="btn btn-success w-100">
-                  <i class="fab fa-google-pay me-2"></i> Google Pay
-                </button>
+                <button type="button" class="btn btn-success w-100"><i class="fab fa-google-pay me-2"></i> Google Pay</button>
               </div>
             </div>
           </form>
@@ -115,6 +115,5 @@
       </div>
     </div>
   </div>
-
 </body>
 </html>

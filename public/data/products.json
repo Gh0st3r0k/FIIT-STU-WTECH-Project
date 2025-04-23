@@ -58,6 +58,16 @@
       "rating": 2.5,
       "isNew": true,
       "category": "Pets"
+    },
+    {
+      "id": 7,
+      "name": "AirPods Pro",
+      "description": "Apple's premium wireless earbuds with active noise cancellation.",
+      "price": 1000000,
+      "image": "../../../img/Fon.png",
+      "rating": 5,
+      "isNew": true,
+      "category": "Headphones"
     }
   ]
   

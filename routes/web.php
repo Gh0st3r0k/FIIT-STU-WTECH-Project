@@ -125,3 +125,9 @@ Route::get('/user/product-card/{id}', function ($id) {
 Route::post('/api/basket/add', [\App\Http\Controllers\BasketController::class, 'add']);
 Route::get('/user/basket', [\App\Http\Controllers\BasketController::class, 'view']);
 
+
+
+
+Route::fallback(function () {
+    return redirect('/error');
+});

@@ -4,7 +4,25 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\BasketController;
+////////////////////////////////////////
+use App\Http\Controllers\ProductController;
+use App\Models\Product;
 
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+
+
+Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
+
+
+// Загрузка изображения
+Route::post('/products/{id}/upload-image', [ProductController::class, 'uploadImage'])->name('products.image.upload');
+
+// Удаление изображения
+Route::delete('/products/{id}/delete-image', [ProductController::class, 'deleteImage'])->name('products.image.delete');
+
+/////////////////////////////////
 
 
 Route::get('/', function () {
@@ -17,11 +35,19 @@ Route::view('/user/registration', 'auth.registration.user-registration');
 Route::view('/error', 'error.error');
 Route::view('/admin/basket', 'general.basket.admin-basket');
 Route::view('/user/basket', 'general.basket.user-basket');
-Route::view('/admin/catalog', 'general.catalog.admin-catalog');
-Route::view('/user/catalog', 'general.catalog.user-catalog');
+// Route::view(uri: '/admin/catalog', 'general.catalog.admin-catalog');
+// Route::view('/user/catalog', 'general.catalog.user-catalog');
+Route::get('/admin/catalog', [ProductController::class, 'adminIndex'])->name('admin.catalog');
+
+Route::get('/user/catalog', function () {
+    $products = Product::orderBy('created_at', 'desc')->get();
+    return view('general.catalog.user-catalog', compact('products'));
+});
 Route::view('/contact', 'general.contact.contact');
 Route::view('/main-page', 'general.main_page.main');
-Route::view('/admin/product-card', 'general.product_card.admin-product_card');
+// Route::view('/admin/product-card', 'general.product_card.admin-product_card');
+Route::get('/admin/product/{id}', [ProductController::class, 'adminShow'])->name('admin.product.show');
+
 Route::view('/user/product-card', 'general.product_card.user-product_card');
 Route::view('/admin/profile', 'general.profile.admin-profile');
 Route::view('/user/profile', 'general.profile.user-profile');

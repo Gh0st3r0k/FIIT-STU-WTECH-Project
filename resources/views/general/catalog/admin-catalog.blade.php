@@ -11,6 +11,19 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="{{ asset('css/general/catalog/admin-catalog.css') }}" />
   <script src="{{ asset('js/general/catalog/admin-catalog.js') }}" defer></script>
+  <style>
+    .card-text.description {
+      max-height: 60px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .card-img-top {
+      object-fit: cover;
+      height: 200px;
+    }
+  </style>
 </head>
 
 <body>
@@ -20,7 +33,7 @@
   </header>
 
   <section id="main-content" class="mt-5">
-    <div class="container-fluid">
+    <div class="container">
       {{-- Title section --}}
       <div class="catalog-name bg-white p-2 w-100 rounded shadow mb-2 mt-1">
         <div class="d-flex justify-content-between align-items-center flex-wrap ps-4 pe-4">
@@ -38,78 +51,34 @@
         </div>
       </div>
 
-      <div class="row">
-        {{-- Sidebar --}}
-        <div class="col-md-3 col-lg-2 d-none d-md-block">
-          {{-- Sidebar filters --}}
-          {{-- ...весь твой фильтр код тут можно оставить без изменений --}}
-        </div>
-
+      <div class="row justify-content-center">
         {{-- Main catalog content --}}
-        <div class="col-md-9 col-lg-10 ms-sm-auto px-4">
-          {{-- Burger button (filters mobile) --}}
-          {{-- ...твой код без изменений --}}
-
-          {{-- Products wrapper --}}
+        <div class="col-lg-11">
           <div class="products-wrapper bg-white p-4 rounded shadow">
-            {{-- Search & Sort --}}
-            {{-- ...твой код без изменений --}}
-
-            {{-- Cards --}}
-            <div class="row" id="productsCard">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" id="productsCard">
               {{-- Карточки продуктов --}}
               @foreach ($products as $product)
-            <div class="col-md-4 mb-4">
+            <div class="col mb-4">
             <div class="card h-100 shadow-sm">
-              <!-- <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="{{ $product->name }}"> -->
               @if ($product->image)
           <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">
           @else
           <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="{{ $product->name }}">
           @endif
 
-
               <div class="card-body">
               <h5 class="card-title">{{ $product->name }}</h5>
               <p class="card-text text-muted">${{ number_format($product->price, 2) }}</p>
-              <p class="card-text">{{ $product->description }}</p>
+              <p class="card-text description">{{ $product->description }}</p>
               <a href="{{ route('admin.product.show', $product->id) }}"
                 class="btn btn-outline-primary w-100 mt-2">
                 ✏ Change
               </a>
-
               </div>
             </div>
             </div>
         @endforeach
             </div>
-
-            <!-- {{-- Форма добавления продукта --}}
-            <div class="row mt-4">
-              <div class="col-12">
-                <div class="p-4 bg-white rounded shadow">
-                  <h5 class="mb-3">Add new product</h5>
-                  <form action="{{ route('products.store') }}" method="POST">
-                    @csrf
-                    <div class="row g-3">
-                      <div class="col-md-4">
-                        <input type="text" name="name" class="form-control" placeholder="Name" required>
-                      </div>
-                      <div class="col-md-4">
-                        <input type="number" step="0.01" name="price" class="form-control" placeholder="Price" required>
-                      </div>
-                      <div class="col-md-4">
-                        <input type="text" name="description" class="form-control" placeholder="Description">
-                      </div>
-                      <div class="col-12">
-                        <button class="btn btn-success w-100 mt-2">Add Product</button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div> -->
-
           </div>
         </div>
       </div>

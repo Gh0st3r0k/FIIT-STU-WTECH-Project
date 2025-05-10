@@ -26,7 +26,7 @@
 
   <section id="main-content" class="mt-5">
     <div class="container">
-      <div class="catalog-name bg-white p-2 rounded shadow mb-4">
+      <div class="catalog-name bg-white p-2 w-100 rounded shadow mb-2 mt-1">
         <div class="d-flex justify-content-between align-items-center flex-wrap ps-4 pe-4">
           <div class="d-flex flex-column">
             <small class="text-muted" id="catalog-path">Home / Catalog</small>
@@ -43,7 +43,7 @@
             <div class="rounded-circle bg-light p-2">
               <i class="fas fa-user fa-lg text-primary"></i>
             </div>
-          </div>
+          </a>
         </div>
       </div>
 

@@ -1,4 +1,4 @@
-.body {
+body {
   background-color: #b3ffdd;
   font-family: Arial, sans-serif;
 }
@@ -116,6 +116,15 @@
     margin-top: 5px;
   }
 }
+
+
+.basket-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
 
 /* --------------- */
 .social a {

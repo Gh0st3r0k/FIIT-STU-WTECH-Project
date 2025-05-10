@@ -17,7 +17,7 @@
   <script src="{{ asset('js/general/basket/user-basket.js') }}" defer></script>
 </head>
 
-<body class="body">
+<body data-auth="{{ Auth::check() ? '1' : '0' }}">
 
   {{-- HEADER --}}
   <header>
@@ -32,8 +32,11 @@
             <h2 class="fw-bold mt-1">Your Basket</h2>
           </div>
           <div class="d-flex align-items-center mt-3 mt-md-0">
-            @php $user = session('user') ?? ['name' => 'Guest', 'surname' => '']; @endphp
-            <span class="me-2 fs-5">{{ $user['name'] }} {{ $user['surname'] }}</span>
+            @auth
+              <span class="me-2 fs-5">{{ Auth::user()->name }} {{ Auth::user()->surname }}</span>
+            @else
+              <span class="me-2 fs-5 text-muted">Guest</span>
+            @endauth
             <div class="rounded-circle bg-light p-2">
               <i class="fas fa-user fa-lg text-primary"></i>
             </div>
@@ -42,36 +45,41 @@
       </div>
 
       {{-- Product Items --}}
-      <div class="bg-white rounded shadow p-4 mb-4">
-        @foreach($items as $item)
-          <div class="basket-item row py-3 gx-2 gx-md-4 align-items-center"
-               data-price="{{ $item['price'] }}"
-               data-product-id="{{ $item['id'] }}">
-            <div class="col-4 col-sm-2 col-md-1">
-              <img src="{{ asset($item['image']) }}" alt="Product Image" class="img-fluid basket-item-image" />
-            </div>
-            <div class="col-8 col-sm-4 col-md-3">
-              <h5 class="fw-bold mb-1">{{ $item['name'] }}</h5>
-              <span class="text-muted d-sm-none">${{ $item['price'] }}</span>
-            </div>
-            <div class="col-4 col-sm-2 col-md-2 text-muted d-none d-sm-block">
-              ${{ $item['price'] }}
-            </div>
-            <div class="col-4 col-sm-2 col-md-2 ms-auto ms-sm-0 d-flex justify-content-end">
-              <input title="Quantity" type="number" class="form-control form-control-sm text-center basket-qty"
-                     value="{{ $item['quantity'] }}" min="0" style="max-width: 60px" />
-            </div>
-            <div class="col-4 col-sm-2 col-md-2 text-end fw-bold d-none d-md-block item-subtotal">
-              ${{ number_format($item['subtotal'], 2) }}
-            </div>
-          </div>
-          <hr />
-        @endforeach
+      <div class="container">
+
+        <div class="bg-white rounded shadow p-4 mb-4" id="basketContent">
+          @auth
+            @foreach($items as $item)
+              <div class="basket-item row py-3 align-items-center"
+                  data-price="{{ $item['price'] }}"
+                  data-product-id="{{ $item['id'] }}">
+                <div class="col-3">
+                  <img src="{{ asset($item['image']) }}" alt="Product Image" class="img-fluid basket-img" />
+                </div>
+                <div class="col-3">{{ $item['name'] }}</div>
+                <div class="col-2">${{ $item['price'] }}</div>
+                <div class="col-2">
+                  <input type="number" class="form-control basket-qty" value="{{ $item['count'] }}" min="0" />
+                </div>
+                <div class="col-2 fw-bold item-subtotal">${{ number_format($item['subtotal'], 2) }}</div>
+              </div>
+              <hr />
+            @endforeach
+          @endauth
+        </div>
 
         <div class="row justify-content-end mt-4">
-          <div class="col-md-4 text-end fw-bold fs-5">Total: ${{ number_format($total, 2) }}</div>
+          <div class="col-md-4 text-end fw-bold fs-5" id="basketTotal">
+            @auth
+              Total: ${{ number_format($total, 2) }}
+            @else
+              Total: $0.00
+            @endauth
+          </div>
         </div>
       </div>
+
+
 
       <div class="text-center">
         <button class="btn btn-dark btn-lg pay-button" data-bs-toggle="modal" data-bs-target="#paymentModal">PAY</button>

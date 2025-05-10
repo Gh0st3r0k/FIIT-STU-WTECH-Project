@@ -3,104 +3,86 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 
 class BasketController extends Controller
 {
-    public function add(Request $request)
+    public function view()
     {
-        $email = session('user.email');
-        if (!$email) {
-            return response()->json(['error' => 'User not logged in'], 403);
-        }
+        $items = [];
+        $total = 0;
 
-        $productId = $request->input('product_id');
+        if (Auth::check()) {
+            $userId = Auth::id();
 
-        $basket = [];
-        $path = 'basket.json';
+            $basket = DB::table('basket')
+                ->where('id_user', $userId)
+                ->first();
 
-        if (Storage::exists($path)) {
-            $json = Storage::get($path);
-            $basket = json_decode($json, true);
-        }
+            if ($basket) {
+                $productRows = DB::table('product_in_basket')
+                    ->where('id_basket', $basket->id)
+                    ->get();
 
-        if (!isset($basket[$email])) {
-            $basket[$email] = [];
-        }
+                foreach ($productRows as $row) {
+                    $product = Product::find($row->id_product);
 
-        // Проверка: есть ли товар
-        $found = false;
-        foreach ($basket[$email] as &$item) {
-            if ($item['product_id'] == $productId) {
-                $item['quantity'] += 1;
-                $found = true;
-                break;
+                    if ($product) {
+                        $subtotal = $product->price * $row->count;
+
+                        $items[] = [
+                            'id' => $product->id,
+                            'name' => $product->name,
+                            'price' => $product->price,
+                            'image' => $product->images->first()
+                                ? '/storage/' . ltrim($product->images->first()->path, '/')
+                                : asset('img/placeholder.png'),
+                            'count' => $row->count,
+                            'subtotal' => $subtotal,
+                        ];
+
+                        $total += $subtotal;
+                    }
+                }
             }
         }
 
-        if (!$found) {
-            $basket[$email][] = [
-                'product_id' => $productId,
-                'quantity' => 1
-            ];
+        return view('general.basket.user-basket', compact('items', 'total'));
+    }
+
+    public function updateQuantity(Request $request)
+    {
+        $userId = Auth::id();
+        $productId = $request->input('product_id');
+        $count = (int)$request->input('count');
+
+        if (!$userId || !$productId) {
+            return response()->json(['error' => 'Invalid data'], 400);
         }
 
-        Storage::put($path, json_encode($basket, JSON_PRETTY_PRINT));
+        $basket = DB::table('basket')->where('id_user', $userId)->first();
+        if (!$basket) {
+            return response()->json(['error' => 'Basket not found'], 404);
+        }
 
-        return response()->json(['success' => true]);
-    }
+        if ($count === 0) {
+            DB::table('product_in_basket')
+                ->where('id_basket', $basket->id)
+                ->where('id_product', $productId)
+                ->delete();
 
+            return response()->json(['message' => 'Product removed']);
+        } else {
+            DB::table('product_in_basket')
+                ->where('id_basket', $basket->id)
+                ->where('id_product', $productId)
+                ->update(['count' => $count]);
 
-
-
-    public function view()
-{
-    $email = session('user.email');
-    if (!$email) {
-        return redirect('/user/login')->with('error', 'Not logged in');
-    }
-
-    $basketPath = 'basket.json';
-    $productPath = public_path('data/products.json');
-
-    $basket = Storage::exists($basketPath)
-        ? json_decode(Storage::get($basketPath), true)
-        : [];
-
-    $products = file_exists($productPath)
-        ? json_decode(file_get_contents($productPath), true)
-        : [];
-
-    $userBasket = $basket[$email] ?? [];
-
-    // Собираем товары
-    $items = [];
-    $total = 0;
-
-    foreach ($userBasket as $entry) {
-        $product = collect($products)->firstWhere('id', $entry['product_id']);
-        if ($product) {
-            $qty = $entry['quantity'];
-            $subtotal = $product['price'] * $qty;
-            $total += $subtotal;
-
-            $items[] = [
-                'id' => $product['id'],
-                'name' => $product['name'],
-                'image' => $product['image'],
-                'price' => $product['price'],
-                'quantity' => $qty,
-                'subtotal' => $subtotal
-            ];
+            return response()->json(['message' => 'Quantity updated']);
         }
     }
 
-    return view('general.basket.user-basket', [
-        'items' => $items,
-        'total' => $total
-    ]);
-}
 
 }
-
-

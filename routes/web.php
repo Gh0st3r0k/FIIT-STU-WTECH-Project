@@ -34,7 +34,6 @@ Route::view('/login', 'auth.login.login');
 
 Route::view('/error', 'error.error');
 Route::view('/admin/basket', 'general.basket.admin-basket');
-Route::view('/user/basket', 'general.basket.user-basket');
 // Route::view(uri: '/admin/catalog', 'general.catalog.admin-catalog');
 // Route::view('/user/catalog', 'general.catalog.user-catalog');
 Route::get('/admin/catalog', [ProductController::class, 'adminIndex'])->name('admin.catalog');
@@ -112,7 +111,9 @@ Route::post('/api/basket/add', [\App\Http\Controllers\BasketController::class, '
 
 
 
+Route::get('/user/basket', [BasketController::class, 'view']);
 
+Route::post('/api/basket/update', [\App\Http\Controllers\BasketController::class, 'updateQuantity']);
 
 
 

@@ -124,7 +124,6 @@
 
 
 
-<!-- Модальное окно добавления продукта -->
 <!-- Кнопка для вызова модального окна -->
 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addProductModal">
   Add Product
@@ -134,13 +133,8 @@
 <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content p-3">
-      <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">
+      <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <div class="modal-header">
-          <h5 class="modal-title" id="addProductModalLabel">Add New Product</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-
         <div class="modal-body">
           <div class="row g-3">
             <div class="col-md-4">
@@ -153,8 +147,8 @@
               <input type="text" name="description" class="form-control" placeholder="Description">
             </div>
             <div class="col-12">
-              <label for="image" class="form-label mt-2">Product image</label>
-              <input type="file" name="image" class="form-control" accept="image/*">
+              <label for="images" class="form-label mt-2">Product images</label>
+              <input type="file" name="images[]" class="form-control" accept="image/*" multiple>
             </div>
           </div>
         </div>
@@ -163,6 +157,7 @@
           <button type="submit" class="btn btn-primary w-100">Add Product</button>
         </div>
       </form>
+
+
     </div>
   </div>
-</div>

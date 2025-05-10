@@ -17,23 +17,22 @@
 
   <section id="main-content" class="mt-5">
     <div class="container">
-      {{-- Product Info --}}
       <div class="catalog-name bg-white p-2 rounded shadow mb-4">
         <div class="d-flex justify-content-between align-items-center flex-wrap ps-4 pe-4">
           <div class="d-flex flex-column">
             <small class="text-muted">Path | Category | Subcategory</small>
             <h2 class="fw-bold mt-1">Catalog name</h2>
           </div>
-          <div class="d-flex align-items-center mt-3 mt-md-0">
-            <span class="me-2 fs-5">Name Surname</span>
+          <a href="{{ url('/admin/profile') }}"
+            class="d-flex align-items-center text-decoration-none text-dark mt-3 mt-md-0">
+            <span class="me-2 fs-5">Admin Name Surname</span>
             <div class="rounded-circle bg-light p-2">
               <i class="fas fa-user fa-lg text-primary"></i>
             </div>
-          </div>
+          </a>
         </div>
       </div>
 
-      {{-- Main Content --}}
       <div class="bg-white rounded shadow p-4 mb-4">
         <div class="row g-5 align-items-start">
 
@@ -44,31 +43,46 @@
                 <form action="{{ route('products.image.upload', $product->id) }}" method="POST"
                   enctype="multipart/form-data">
                   @csrf
-                  <input type="file" name="image" class="form-control form-control-sm mb-1"
+                  <input type="file" name="images[]" class="form-control form-control-sm mb-1" multiple
                     onchange="this.form.submit()">
                 </form>
-                <form action="{{ route('products.image.delete', $product->id) }}" method="POST">
-                  @csrf
-                  @method('DELETE')
-                  <button type="submit" class="btn btn-sm btn-danger" title="Remove image"><i
-                      class="fas fa-minus"></i></button>
-                </form>
               </div>
 
-              <div class="d-flex align-items-center justify-content-center h-100">
-                <button class="btn btn-link fs-2 text-dark me-3" id="prevBtn" aria-label="Previous image">
-                  <i class="fa-solid fa-chevron-left"></i>
-                </button>
-                <img id="galleryImg"
-                  src="{{ $product->image ? asset('storage/' . $product->image) : asset('img/dogfood.jpg') }}"
-                  alt="{{ $product->name }}" class="img-fluid border border-2 rounded product-img" />
-                <button class="btn btn-link fs-2 text-dark ms-3" id="nextBtn" aria-label="Next image">
-                  <i class="fa-solid fa-chevron-right"></i>
-                </button>
-              </div>
+              @if ($product->images->count())
+            <div id="carouselProductImages" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              @foreach ($product->images as $index => $image)
+          <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+          <img src="{{ asset('storage/' . $image->path) }}" class="d-block w-100 rounded"
+            style="max-height: 350px; object-fit: contain;" alt="Image {{ $index + 1 }}">
+          <form action="{{ route('products.image.delete', [$product->id, $image->id]) }}" method="POST"
+            class="position-absolute top-0 end-0 m-2">
+            @csrf
+            @method('DELETE')
+            <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+          </form>
+
+          </div>
+          @endforeach
+            </div>
+            @if ($product->images->count() > 1)
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselProductImages"
+          data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bg-dark rounded-circle"></span>
+          <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselProductImages"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon bg-dark rounded-circle"></span>
+          <span class="visually-hidden">Next</span>
+          </button>
+        @endif
+            </div>
+        @else
+          <p class="text-center">No images available.</p>
+        @endif
             </div>
           </div>
-
           {{-- Product Details --}}
           <div class="col-md-6">
             <form id="updateForm" method="POST" action="{{ route('products.update', $product->id) }}">

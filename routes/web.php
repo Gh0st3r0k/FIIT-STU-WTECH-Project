@@ -17,10 +17,11 @@ Route::put('/products/{id}', [ProductController::class, 'update'])->name('produc
 
 
 // Загрузка изображения
-Route::post('/products/{id}/upload-image', [ProductController::class, 'uploadImage'])->name('products.image.upload');
+// Route::post('/products/{id}/upload-image', [ProductController::class, 'uploadImage'])->name('products.image.upload');
+Route::post('/products/{id}/images', [ProductController::class, 'uploadImage'])->name('products.image.upload');
 
 // Удаление изображения
-Route::delete('/products/{id}/delete-image', [ProductController::class, 'deleteImage'])->name('products.image.delete');
+Route::delete('/products/{product}/images/{image}', [ProductController::class, 'deleteImage'])->name('products.image.delete');
 
 /////////////////////////////////
 

@@ -10,7 +10,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="{{ asset('css/general/catalog/admin-catalog.css') }}" />
-  <script src="{{ asset('js/general/catalog/admin-catalog.js') }}" defer></script>
+  <!-- <script src="{{ asset('js/general/catalog/admin-catalog.js') }}" defer></script> -->
   <style>
     .card-text.description {
       max-height: 60px;
@@ -60,10 +60,11 @@
               @foreach ($products as $product)
             <div class="col mb-4">
             <div class="card h-100 shadow-sm">
-              @if ($product->image)
-          <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">
+              @if ($product->images->isNotEmpty())
+          <img src="{{ asset('storage/' . $product->images->first()->path) }}" class="card-img-top"
+          alt="{{ $product->name }}">
           @else
-          <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="{{ $product->name }}">
+          <img src="{{ asset('img/placeholder.png') }}" class="card-img-top" alt="Placeholder">
           @endif
 
               <div class="card-body">

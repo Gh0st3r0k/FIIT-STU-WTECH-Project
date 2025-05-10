@@ -194,6 +194,17 @@
 ;
 }
   
+
+.carousel-item form.position-absolute {
+  z-index: 1051; /* Поверх стрелок */
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  z-index: 1049; /* Чуть ниже кнопки удаления */
+}
+
+
   /* ////////////////////////////////////////////////////////////////////////////// */
   /* Footer */
   .social a {

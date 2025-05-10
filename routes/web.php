@@ -44,6 +44,8 @@ Route::get('/user/catalog', function () {
     $products = Product::orderBy('created_at', 'desc')->get();
     return view('general.catalog.user-catalog', compact('products'));
 });
+Route::get('/user/product/{id}', [ProductController::class, 'userShow'])->name('user.product.show');
+
 Route::view('/contact', 'general.contact.contact');
 Route::view('/main-page', 'general.main_page.main');
 // Route::view('/admin/product-card', 'general.product_card.admin-product_card');

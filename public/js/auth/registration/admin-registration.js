@@ -159,6 +159,56 @@ document.addEventListener("DOMContentLoaded", function () {
     repeatPasswordInput.type = 'password';
   });
 
+
+
+  const submitBtn = document.getElementById('submitBtn');
+
+  submitBtn.addEventListener('click', function () {
+    const nameError = getNameError(nameInput);
+    const surnameError = getNameError(surnameInput);
+    const emailError = getEmailError(emailInput);
+    const passwordError = getPasswordError(passwordInput);
+    const repeatPasswordError = getRepeatPasswordError(passwordInput, repeatPasswordInput);
+  
+    if (
+      nameError || surnameError || emailError || passwordError || repeatPasswordError
+    ) {
+      showMessage('danger', 'Please fix validation errors before submitting.');
+      return;
+    }
+  
+    const data = {
+      name: nameInput.value.trim(),
+      surname: surnameInput.value.trim(),
+      email: emailInput.value.trim(),
+      password: passwordInput.value.trim(),
+      password_confirmation: repeatPasswordInput.value.trim()
+    };
+  
+    fetch('/admin/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+      },
+      body: JSON.stringify(data)
+    })
+      .then(res => res.json().then(json => ({ ok: res.ok, json })))
+      .then(({ ok, json }) => {
+        if (ok) {
+          showMessage('success', json.message);
+          // ❌ никаких редиректов
+        } else {
+          showMessage('danger', json.message || 'Registration failed.');
+        }
+      })
+      .catch(err => {
+        showMessage('danger', 'Server error.');
+        console.error(err);
+      });
+  });
+  
+
 });
   
 
@@ -245,3 +295,41 @@ function getRepeatPasswordError(passwordInput, repeatPasswordInput) {
 
   return '';
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const formMessage = document.getElementById('formMessage');
+
+// Показать ошибку валидации
+function showMessage(type, text) {
+  formMessage.className = 'alert alert-' + type;
+  formMessage.textContent = text;
+  formMessage.classList.remove('d-none');
+
+  // Автоматически скрыть через 5 сек
+  setTimeout(() => {
+    formMessage.classList.add('d-none');
+  }, 5000);
+}
+
+

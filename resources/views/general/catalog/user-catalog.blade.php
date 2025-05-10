@@ -30,13 +30,17 @@
       <div class="catalog-name bg-white p-2 w-100 rounded shadow mb-2 mt-1">
         <div class="d-flex justify-content-between align-items-center flex-wrap ps-4 pe-4">
           <div class="d-flex flex-column">
-            <small class="text-muted">Home / Catalog</small>
+            <small class="text-muted" id="catalog-path">Home / Catalog</small>
             <h2 class="fw-bold mt-1">Product Catalog</h2>
           </div>
           <a href="{{ url('/user/profile') }}"
             class="d-flex align-items-center text-decoration-none text-dark mt-3 mt-md-0">
-            @php $user = session('user') ?? ['name' => 'Guest', 'surname' => '']; @endphp
-            <span class="me-2 fs-5">{{ $user['name'] }} {{ $user['surname'] }}</span>
+            @auth
+              <span class="me-2 fs-5">{{ Auth::user()->name }} {{ Auth::user()->surname }}</span>
+            @else
+              <span class="me-2 fs-5 text-muted">Guest</span>
+            @endauth
+
             <div class="rounded-circle bg-light p-2">
               <i class="fas fa-user fa-lg text-primary"></i>
             </div>

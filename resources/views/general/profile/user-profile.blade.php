@@ -26,11 +26,16 @@
               <img src="{{ asset('img/test_gal3.jpg') }}" alt="User Avatar" class="rounded-circle user-avatar" />
             </div>
             <div class="col-md-9">
-              @php $user = session('user') ?? ['name' => 'Guest', 'surname' => '', 'email' => 'unknown@example.com']; @endphp
-              <h4 class="fw-normal">{{ $user['name'] }} {{ $user['surname'] }}</h4>
-              <p class="text-muted mb-1">{{ $user['email'] }}</p>
-              <p class="text-muted">+421 987 654 321</p>
-
+              @auth
+                @php
+                  $user = Auth::user();
+                @endphp
+                <h4 class="fw-normal">{{ $user->name }} {{ $user->surname }}</h4>
+                <p class="text-muted mb-1">{{ $user->email }}</p>
+              @else
+                <h4 class="fw-normal">Guest</h4>
+                <p class="text-muted mb-1">unknown@example.com</p>
+              @endauth
               <div class="row mt-3 g-2">
                 <!-- Валюта -->
                 <div class="col-12 col-sm-6 d-flex align-items-center gap-2">

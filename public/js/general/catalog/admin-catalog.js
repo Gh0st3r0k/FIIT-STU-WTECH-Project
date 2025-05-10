@@ -32,3 +32,33 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
   
+
+
+
+  const pathElement = document.getElementById("catalog-path");
+const searchInput = document.querySelector("#searchInput input");
+
+function updatePath() {
+  const selectedCategory = document.querySelector(".category-filter.active")?.dataset.category;
+  const searchTerm = searchInput.value.trim();
+
+  let path = "Home / Catalog";
+  if (selectedCategory) path += ` / ${selectedCategory}`;
+  if (searchTerm) path += ` / "${searchTerm}"`;
+
+  pathElement.textContent = path;
+}
+
+// обновляем путь при выборе категории
+document.querySelectorAll(".category-filter").forEach((el) => {
+  el.addEventListener("click", () => {
+    document.querySelectorAll(".category-filter").forEach(c => c.classList.remove("active"));
+    el.classList.add("active");
+    updatePath();
+  });
+});
+
+// обновляем путь при вводе в поиск
+searchInput.addEventListener("input", () => {
+  updatePath();
+});

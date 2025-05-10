@@ -31,9 +31,16 @@
             <img src="{{ asset('img/test_gal3.jpg') }}" alt="User Avatar" class="rounded-circle user-avatar" />
           </div>
           <div class="col-md-9">
-            <h4 class="fw-normal">Username (Admin)</h4>
-            <p class="text-muted mb-1">admin@mail.com</p>
-            <p class="text-muted">+421 123 456 789</p>
+            @auth
+              @php
+                $user = Auth::user();
+              @endphp
+              <h4 class="fw-normal">{{ $user->name }} {{ $user->surname }}</h4>
+              <p class="text-muted mb-1">{{ $user->email }}</p>
+            @else
+              <h4 class="fw-normal">Guest</h4>
+              <p class="text-muted mb-1">unknown@example.com</p>
+            @endauth
           </div>
         </div>
         <button class="btn btn-primary btn-sm add-product-btn" data-bs-toggle="modal" data-bs-target="#addProductModal">

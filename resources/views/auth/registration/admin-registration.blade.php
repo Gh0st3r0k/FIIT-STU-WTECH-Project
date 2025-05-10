@@ -18,6 +18,9 @@
 
     <!-- Custom JS -->
     <script src="{{ asset('js/auth/registration/admin-registration.js') }}" defer></script>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 </head>
 <body>
 
@@ -45,7 +48,9 @@
             <div class="row justify-content-center">
                 <div class="col-10 col-sm-6 col-md-6 col-lg-6 col-xl-4">
                     <div class="bg-white ps-4 pe-4 pt-3 pb-3 rounded shadow">
-                        <form autocomplete="on">
+                    <div id="formMessage" class="alert d-none" role="alert"></div>
+                        <form>
+                            @csrf
                             {{-- Name --}}
                             <div class="mb-2">
                                 <p class="content-text">Name</p>
@@ -81,24 +86,28 @@
                                 <p class="content-text">Password</p>
                                 <div class="position-relative input-wrapper">
                                     <input type="password" class="form-control validated-password-input" placeholder="Password" id="passwordInput" name="password">
-                                    <span class="toggle-password" id="togglePassword"><i class="fas fa-eye"></i></span>
+                                    <span class="toggle-password" id="togglePassword">
+                                        <i class="fas fa-eye"></i>
+                                    </span>
                                     <span class="validation-password-icon" id="passwordIcon"></span>
                                 </div>
                                 <div class="invalid-feedback d-block ms-2" id="passwordError"></div>
                             </div>
 
-                            {{-- Repeat password --}}
+                            {{-- Repeat Password --}}
                             <div class="mb-2">
                                 <p class="content-text">Repeat password</p>
                                 <div class="position-relative input-wrapper">
-                                    <input type="password" class="form-control validated-password-input" placeholder="Password" id="repeatPasswordInput" name="password" autocomplete="new-password">
-                                    <span class="toggle-password" id="toggleRepeatPassword"><i class="fas fa-eye"></i></span>
+                                    <input type="password" class="form-control validated-password-input" placeholder="Password" id="repeatPasswordInput" name="password">
+                                    <span class="toggle-password" id="toggleRepeatPassword">
+                                        <i class="fas fa-eye"></i>
+                                    </span>
                                     <span class="validation-password-icon" id="repeatPasswordIcon"></span>
                                 </div>
                                 <div class="invalid-feedback d-block ms-2" id="repeatPasswordError"></div>
                             </div>
 
-                            <button type="submit" class="btn btn-dark w-100">Submit</button>
+                            <button type="button" id="submitBtn" class="btn btn-dark w-100">Submit</button>
                         </form>
                     </div>
                 </div>

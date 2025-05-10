@@ -31,8 +31,7 @@ Route::get('/', function () {
 });
 
 Route::view('/login', 'auth.login.login');
-Route::view('/admin/registration', 'auth.registration.admin-registration');
-Route::view('/user/registration', 'auth.registration.user-registration');
+
 Route::view('/error', 'error.error');
 Route::view('/admin/basket', 'general.basket.admin-basket');
 Route::view('/user/basket', 'general.basket.user-basket');
@@ -58,49 +57,6 @@ Route::get('/logout', function () {
     session()->flush(); // полностью очистить сессию
     return redirect('/login');
 })->name('logout');
-
-
-Route::post('/register', function (Request $request) {
-    // Получаем JSON-данные
-    $data = $request->json()->all();
-
-    // Валидация на всякий случай (можно добавить больше правил)
-    if (
-        empty($data['name']) ||
-        empty($data['surname']) ||
-        empty($data['email']) ||
-        empty($data['password'])
-    ) {
-        return response()->json(['message' => 'All fields are required.'], 400);
-    }
-
-    $path = storage_path('app/users.json');
-
-    // Загружаем текущих пользователей
-    $users = file_exists($path) ? json_decode(file_get_contents($path), true) : [];
-
-    // Проверяем, есть ли такой email
-    foreach ($users as $user) {
-        if ($user['email'] === $data['email']) {
-            return response()->json(['message' => 'User already exists.'], 409);
-        }
-    }
-
-    // Добавляем нового пользователя
-    $users[] = [
-        'name' => $data['name'],
-        'surname' => $data['surname'],
-        'email' => $data['email'],
-        'password' => password_hash($data['password'], PASSWORD_DEFAULT),
-        'created_at' => now()->toDateTimeString()
-    ];
-
-    // Сохраняем
-    file_put_contents($path, json_encode($users, JSON_PRETTY_PRINT));
-
-    return response()->json(['message' => 'Registration successful.'], 200);
-})->name('register.submit');
-
 
 
 
@@ -150,7 +106,46 @@ Route::get('/user/product-card/{id}', function ($id) {
 
 
 Route::post('/api/basket/add', [\App\Http\Controllers\BasketController::class, 'add']);
-Route::get('/user/basket', [\App\Http\Controllers\BasketController::class, 'view']);
+//Route::get('/user/basket', [\App\Http\Controllers\BasketController::class, 'view']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Http\Controllers\Auth\RegisterController;
+
+Route::view('/user/registration', 'auth.registration.user-registration')->name('register.form');
+Route::post('/register', [RegisterController::class, 'register'])->name('register.submit');
+
+
+
+use App\Http\Controllers\Auth\LoginController;
+
+Route::post('/login', [LoginController::class, 'login']);
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+
+
+Route::view('/admin/registration', 'auth.registration.admin-registration')->name('register.admin.form');
+Route::post('/admin/register', [RegisterController::class, 'registerAdmin'])->name('register.admin.submit');
 
 
 

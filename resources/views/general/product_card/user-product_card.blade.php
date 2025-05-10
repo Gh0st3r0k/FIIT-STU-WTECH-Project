@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -18,7 +19,7 @@
   <header>
     @include('layouts.header')
   </header>
-  
+
   <section id="main-content" class="mt-5">
     <div class="container">
 
@@ -46,9 +47,12 @@
           {{-- Image with buttons --}}
           <div class="col-md-6">
             <div class="d-flex align-items-center justify-content-center">
-              <button class="btn btn-link fs-2 text-dark me-3" id="prevBtn"><i class="fa-solid fa-chevron-left"></i></button>
-              <img id="galleryImg" src="{{ $product['image'] }}" alt="Product Gallery" class="img-fluid border border-2 rounded product-gallery-img" />
-              <button class="btn btn-link fs-2 text-dark ms-3" id="nextBtn"><i class="fa-solid fa-chevron-right"></i></button>
+              <button class="btn btn-link fs-2 text-dark me-3" id="prevBtn"><i
+                  class="fa-solid fa-chevron-left"></i></button>
+              <img id="galleryImg" src="{{ $product['image'] }}" alt="Product Gallery"
+                class="img-fluid border border-2 rounded product-gallery-img" />
+              <button class="btn btn-link fs-2 text-dark ms-3" id="nextBtn"><i
+                  class="fa-solid fa-chevron-right"></i></button>
             </div>
           </div>
 
@@ -58,7 +62,7 @@
 
 
             <div class="d-flex align-items-center mb-3">
-            <h4 class="text-muted me-3 mb-0">${{ number_format($product['price'], 2) }}</h4>
+              <h4 class="text-muted me-3 mb-0">${{ number_format($product['price'], 2) }}</h4>
               <select class="form-select form-select-sm w-auto">
                 <option value="usd" selected>USD</option>
                 <option value="eur">EUR</option>
@@ -80,7 +84,8 @@
 
             <div class="d-flex gap-2 mb-3">
               <button class="btn btn-dark btn-sm px-3 flex-grow-1">BUY</button>
-              <button class="btn btn-outline-primary btn-sm" title="Add to Basket"><i class="fas fa-shopping-cart"></i></button>
+              <button class="btn btn-outline-primary btn-sm" title="Add to Basket"><i
+                  class="fas fa-shopping-cart"></i></button>
             </div>
 
             <div class="p-2 border rounded">
@@ -110,19 +115,19 @@
             <div class="carousel-item active">
               <div class="row">
                 @for($i = 0; $i < 4; $i++)
-                <div class="col-6 col-sm-4 col-md-3 mb-3">
-                  <div class="card h-100 shadow-sm">
-                    <img src="{{ asset('img/Fon.png') }}" class="card-img-top" alt="Product" />
-                    <div class="card-body text-center">
-                      <h5 class="card-title fs-6">Product {{ $i+1 }}</h5>
-                      <p class="card-text">$29.99</p>
-                      <button class="btn btn-outline-dark btn-sm">
-                        <i class="fas fa-cart-plus me-1"></i> <span class="d-none d-sm-inline">Add to Cart</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                @endfor
+          <div class="col-6 col-sm-4 col-md-3 mb-3">
+            <div class="card h-100 shadow-sm">
+            <img src="{{ asset('img/Fon.png') }}" class="card-img-top" alt="Product" />
+            <div class="card-body text-center">
+              <h5 class="card-title fs-6">Product {{ $i + 1 }}</h5>
+              <p class="card-text">$29.99</p>
+              <button class="btn btn-outline-dark btn-sm">
+              <i class="fas fa-cart-plus me-1"></i> <span class="d-none d-sm-inline">Add to Cart</span>
+              </button>
+            </div>
+            </div>
+          </div>
+        @endfor
               </div>
             </div>
 
@@ -150,4 +155,5 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

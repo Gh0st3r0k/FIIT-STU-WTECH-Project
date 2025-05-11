@@ -111,11 +111,11 @@ class ProductController extends Controller
         return redirect('/admin/catalog')->with('success', 'Product deleted successfully.');
     }
 
-    public function adminIndex()
-    {
-        $products = Product::with('images')->orderBy('created_at', 'desc')->get();
-        return view('general.catalog.admin-catalog', compact('products'));
-    }
+    // public function adminIndex()
+    // {
+    //     $products = Product::with('images')->orderBy('created_at', 'desc')->get();
+    //     return view('general.catalog.admin-catalog', compact('products'));
+    // }
 
     public function userShow($id)
     {
@@ -158,6 +158,31 @@ class ProductController extends Controller
 
     }
 
+    public function adminCatalog(Request $request)
+    {
+        $query = Product::with('images');
+
+        if ($request->filled('min_price')) {
+            $query->where('price', '>=', $request->input('min_price'));
+        }
+
+        if ($request->filled('max_price')) {
+            $query->where('price', '<=', $request->input('max_price'));
+        }
+
+        if ($request->has('type')) {
+            $query->whereIn('category_type', $request->input('type'));
+        }
+
+        if ($request->boolean('is_new')) {
+            $query->where('created_at', '>=', Carbon::now()->subDays(5));
+        }
+
+        $products = $query->orderBy('created_at', 'desc')->get();
+        $categories = CategoryType::all();
+
+        return view('general.catalog.admin-catalog', compact('products', 'categories'));
+    }
 
 
 

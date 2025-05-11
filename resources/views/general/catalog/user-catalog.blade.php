@@ -76,7 +76,6 @@
                     {{ request('is_new') ? 'checked' : '' }}>
                   <label class="form-check-label fw-bold">
                     Only new (5 days)
-
                   </label>
                 </div>
               </div>
@@ -87,6 +86,22 @@
 
           <!-- КАТАЛОГ -->
           <div class="col-lg-9">
+            <div class="bg-white p-3 rounded  d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 mb-4">
+              <div class="input-group rounded-pill border border-1 ps-3 pe-2 py-1 w-100 w-md-auto" id="searchInput">
+                <input type="text" class="form-control border-0 bg-transparent" placeholder="Search" />
+                <span class="input-group-text bg-transparent border-0">
+                  <i class="fas fa-search"></i>
+                </span>
+              </div>
+
+              <div class="sort-buttons-grid w-100 w-md-auto">
+                <button id="sort-new" type="button" class="btn btn-dark btn-sm w-100">New</button>
+                <button id="sort-price-asc" type="button" class="btn btn-light btn-sm w-100 text-muted">Price ascending</button>
+                <button id="sort-price-desc" type="button" class="btn btn-light btn-sm w-100 text-muted">Price descending</button>
+                <button id="sort-rating" type="button" class="btn btn-light btn-sm w-100 text-muted">Rating</button>
+              </div>
+            </div>
+
             <div class="row" id="productsCard">
               @forelse ($products as $product)
                 <div class="col-6 col-sm-4 col-md-4 mb-4">

@@ -43,7 +43,7 @@ Route::view('/login', 'auth.login.login');
 Route::view('/error', 'error.error');
 Route::view('/admin/basket', 'general.basket.admin-basket');
 
-Route::get('/admin/catalog', [ProductController::class, 'adminIndex'])->name('admin.catalog');
+Route::get('/admin/catalog', [ProductController::class, 'adminCatalog'])->name('admin.catalog');
 
 Route::get('/user/catalog', [ProductController::class, 'catalog'])->name('catalog');
 

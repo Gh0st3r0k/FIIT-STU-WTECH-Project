@@ -18,7 +18,7 @@
       @include('layouts.header')
     </header>
 
-    <section id="main-content" class="pt-5 mt-5">
+    <section id="main-content" class="pt-5 mt-0">
       <div class="container">
         <div class="user-card bg-white rounded shadow p-4 mb-4">
           <div class="row g-4 align-items-center">

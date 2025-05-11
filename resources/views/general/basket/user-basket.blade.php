@@ -24,7 +24,7 @@
     @include('layouts.header')
   </header>
 
-  <section id="main-content" class="pt-5 mt-5">
+  <section id="main-content" class="pt-5 mt-0">
     <div class="container">
       <div class="bg-white p-2 rounded shadow mb-4 user-box">
         <div class="d-flex justify-content-between align-items-center flex-wrap ps-4 pe-4">

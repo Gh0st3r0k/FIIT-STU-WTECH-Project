@@ -9,6 +9,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="{{ asset('css/general/catalog/user-catalog.css') }}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script src="{{ asset('js/general/catalog/user-catalog.js') }}"></script>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <style>
     .card-hover {
       cursor: pointer;
@@ -106,6 +108,7 @@
               @forelse ($products as $product)
                 <div class="col-6 col-sm-4 col-md-4 mb-4">
                   <div class="card h-100 shadow-sm card-hover"
+                    data-product-id="{{ $product->id }}"
                     onclick="window.location='{{ route('user.product.show', $product->id) }}'">
                     @if ($product->images->count())
                       <div id="carouselUser{{ $product->id }}" class="carousel slide" data-bs-ride="carousel">
@@ -155,11 +158,6 @@
 
   @include('layouts.footer')
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    function addToCart(productId) {
-      alert('Product ' + productId + ' added to cart (placeholder logic).');
-    }
-  </script>
 </body>
 
 </html>

@@ -10,6 +10,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="{{ asset('css/general/product_card/user-product_card.css') }}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
 </head>
 
 <body class="body">
@@ -26,8 +28,11 @@
             <h2 class="fw-bold mt-1">Catalog name</h2>
           </div>
           <div class="d-flex align-items-center mt-3 mt-md-0">
-            @php $user = session('user') ?? ['name' => 'Guest', 'surname' => '']; @endphp
-            <span class="me-2 fs-5">{{ $user['name'] }} {{ $user['surname'] }}</span>
+            @auth
+              <span class="me-2 fs-5">{{ Auth::user()->name }} {{ Auth::user()->surname }}</span>
+            @else
+              <span class="me-2 fs-5 text-muted">Guest</span>
+            @endauth
             <div class="rounded-circle bg-light p-2">
               <i class="fas fa-user fa-lg text-primary"></i>
             </div>
@@ -72,11 +77,11 @@
             <h3 class="mb-3">{{ $product->name }}</h3>
             <div class="d-flex align-items-center mb-3">
               <h4 class="text-muted me-3 mb-0">${{ number_format($product->price, 2) }}</h4>
-              <select class="form-select form-select-sm w-auto">
+              <!-- <select class="form-select form-select-sm w-auto">
                 <option value="usd" selected>USD</option>
                 <option value="eur">EUR</option>
                 <option value="uah">UAH</option>
-              </select>
+              </select> -->
             </div>
 
             <div class="mb-3 d-flex align-items-center gap-2">
@@ -92,11 +97,26 @@
             </div>
 
             <div class="d-flex gap-2 mb-3">
-              <button class="btn btn-dark btn-sm px-3 flex-grow-1">BUY</button>
-              <button class="btn btn-outline-primary btn-sm" title="Add to Basket">
+              <button class="btn btn-dark btn-sm px-3 flex-grow-1"
+                      data-id="{{ $product->id }}"
+                      data-name="{{ $product->name }}"
+                      data-price="{{ $product->price }}"
+                      data-image="{{ $product->images->first() ? asset('storage/' . $product->images->first()->path) : '' }}"
+                      data-quantity="#quantityInput"
+                      data-buy="1">
+                BUY
+              </button>
+
+              <button class="btn btn-outline-primary btn-sm"
+                      data-id="{{ $product->id }}"
+                      data-name="{{ $product->name }}"
+                      data-price="{{ $product->price }}"
+                      data-image="{{ $product->images->first() ? asset('storage/' . $product->images->first()->path) : '' }}"
+                      data-quantity="#quantityInput">
                 <i class="fas fa-shopping-cart"></i>
               </button>
             </div>
+
 
             <div class="p-2 border border-primary rounded">
               <p class="fw-bold mb-1">{{ $product->name }}</p>
@@ -131,9 +151,15 @@
           <div class="card-body text-center">
           <h5 class="card-title fs-6">{{ $related->name }}</h5>
           <p class="card-text">${{ number_format($related->price, 2) }}</p>
-          <button class="btn btn-outline-dark btn-sm">
-            <i class="fas fa-cart-plus me-1"></i> <span class="d-none d-sm-inline">Add to Cart</span>
+          <button class="btn btn-outline-dark btn-sm"
+                  data-id="{{ $related->id }}"
+                  data-name="{{ $related->name }}"
+                  data-price="{{ $related->price }}"
+                  data-image="{{ $related->images->first() ? asset('storage/' . $related->images->first()->path) : '' }}">
+            <i class="fas fa-cart-plus me-1"></i>
+            <span class="d-none d-sm-inline">Add to Cart</span>
           </button>
+
           </div>
         </div>
         </div>
@@ -147,6 +173,56 @@
   @include('layouts.footer')
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+  <script>
+    function addToCart(productId, count = 1, productName = '', productPrice = 0, productImage = '', redirect = false) {
+      fetch('/api/basket/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || ''
+        },
+        body: JSON.stringify({ product_id: productId, count })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          if (redirect) window.location.href = @json(url('/user/basket'));
+        } else if (data.guest) {
+          let basket = JSON.parse(localStorage.getItem('basket') || '[]');
+          const existing = basket.find(p => p.id === productId);
+          if (existing) {
+            existing.count += count;
+          } else {
+            basket.push({ id: productId, name: productName, price: productPrice, count, image: productImage });
+          }
+          localStorage.setItem('basket', JSON.stringify(basket));
+          if (redirect) window.location.href = @json(url('/user/basket'));
+        }
+      });
+    }
+
+    document.querySelectorAll("button[data-id]").forEach(button => {
+      button.addEventListener("click", () => {
+        const id = parseInt(button.dataset.id);
+        const name = button.dataset.name;
+        const price = parseFloat(button.dataset.price);
+        const image = button.dataset.image;
+        const quantitySelector = button.dataset.quantity;
+        const redirect = button.dataset.buy === "1";
+
+        const count = quantitySelector
+          ? parseInt(document.querySelector(quantitySelector)?.value || 1)
+          : 1;
+
+        addToCart(id, count, name, price, image, redirect);
+      });
+    });
+  </script>
+
+
+
 </body>
 
 </html>

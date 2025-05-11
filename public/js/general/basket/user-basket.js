@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         const result = await res.json();
-        alert(result.message || "Order placed!");
+        //alert(result.message || "Order placed!");
       } else {
         // берём корзину из localStorage
         const basket = JSON.parse(localStorage.getItem("basket") || "[]");
@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         const result = await res.json();
-        alert(result.message || "Order placed!");
+        //alert(result.message || "Order placed!");
         localStorage.removeItem("basket");
       }
 

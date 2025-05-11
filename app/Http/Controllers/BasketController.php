@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
+use App\Models\ProductInBasket;
+use App\Models\Basket;
 
 class BasketController extends Controller
 {
@@ -83,6 +85,45 @@ class BasketController extends Controller
             return response()->json(['message' => 'Quantity updated']);
         }
     }
+
+    
+    public function add(Request $request)
+    {
+        $user = auth()->user();
+
+        if (!$user) {
+            return response()->json(['guest' => true]);
+        }
+
+        // Найти корзину пользователя по user_id
+        $basket = Basket::firstOrCreate(
+            ['id_user' => $user->id],
+            ['id_user' => $user->id]
+        );
+
+        // Найти товар в корзине
+        $existing = ProductInBasket::where('id_basket', $basket->id)
+                                ->where('id_product', $request->product_id)
+                                ->first();
+
+        if ($existing) {
+            $existing->count += 1;
+            $existing->save();
+        } else {
+            ProductInBasket::create([
+                'id_basket' => $basket->id,
+                'id_product' => $request->product_id,
+                'count' => 1
+            ]);
+        }
+
+        return response()->json(['success' => true]);
+    }
+
+    
+
+
+
 
 
 }

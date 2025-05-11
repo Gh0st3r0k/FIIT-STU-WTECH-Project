@@ -91,7 +91,8 @@
               @foreach ($products as $product)
             <div class="col-6 col-sm-4 col-md-3 mb-4">
             <div class="card h-100 shadow-sm card-hover"
-              onclick="window.location='{{ route('user.product.show', $product->id) }}'">
+                    data-product-id="{{ $product->id }}"
+                    onclick="window.location='{{ route('user.product.show', $product->id) }}'">
               @if ($product->images->count())
             <div id="carouselMain{{ $product->id }}" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
@@ -141,11 +142,6 @@
   @include('layouts.footer')
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    function addToCart(productId) {
-      alert('Product ' + productId + ' added to cart (placeholder)');
-    }
-  </script>
 </body>
 
 </html>

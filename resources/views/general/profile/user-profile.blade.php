@@ -58,7 +58,7 @@
 
         <div class="bg-light p-3 rounded d-flex justify-content-between align-items-center mb-4">
           <span class="fw-semibold">No orders on way</span>
-          <button class="btn btn-success btn-sm">ADD NEW</button>
+          <a href="{{ url('/main-page') }}" class="btn btn-success btn-sm">ADD NEW</a>
         </div>
 
         <div class="bg-white rounded shadow p-4 history-block">

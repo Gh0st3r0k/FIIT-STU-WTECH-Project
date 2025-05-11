@@ -26,31 +26,16 @@
           </div>
           <div class="col-md-9">
             @auth
-            @php
-            $user = Auth::user();
-          @endphp
-            <h4 class="fw-normal">{{ $user->name }} {{ $user->surname }}</h4>
-            <p class="text-muted mb-1">{{ $user->email }}</p>
+          @php
+          $user = Auth::user();
+        @endphp
+          <h4 class="fw-normal">{{ $user->name }} {{ $user->surname }}</h4>
+          <p class="text-muted mb-1">{{ $user->email }}</p>
       @else
         <h4 class="fw-normal">Guest</h4>
         <p class="text-muted mb-1">unknown@example.com</p>
       @endauth
-            <!-- <div class="row mt-3 g-2">
-                <div class="col-12 col-sm-6 d-flex align-items-center gap-2">
-                  <span class="text-muted">Currency</span>
-                  <select class="form-select form-select-sm">
-                    <option value="usd" selected>USD</option>
-                    <option value="eur">EUR</option>
-                  </select>
-                </div>
-                <div class="col-12 col-sm-6 d-flex align-items-center gap-2">
-                  <span class="text-muted">Language</span>
-                  <select class="form-select form-select-sm">
-                    <option value="en" selected>EN</option>
-                    <option value="sk">SK</option>
-                  </select>
-                </div>
-              </div> -->
+
           </div>
         </div>
       </div>

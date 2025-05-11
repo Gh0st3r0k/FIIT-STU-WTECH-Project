@@ -15,7 +15,7 @@
   {{-- HEADER --}}
   <header>@include('layouts.header')</header>
 
-  <section id="main-content" class="mt-5">
+  <section id="main-content" class="mt-0">
     <div class="container">
       <div class="catalog-name bg-white p-2 rounded shadow mb-4">
         <div class="d-flex justify-content-between align-items-center flex-wrap ps-4 pe-4">

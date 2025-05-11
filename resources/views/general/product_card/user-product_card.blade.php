@@ -16,7 +16,7 @@
   {{-- HEADER --}}
   <header>@include('layouts.header')</header>
 
-  <section id="main-content" class="mt-5">
+  <section id="main-content" class="mt-0">
     <div class="container">
       {{-- Product Info --}}
       <div class="catalog-name bg-white p-2 rounded shadow mb-4">
@@ -25,13 +25,18 @@
             <small class="text-muted">Home / Catalog / {{ $product->name }}</small>
             <h2 class="fw-bold mt-1">Catalog name</h2>
           </div>
-          <div class="d-flex align-items-center mt-3 mt-md-0">
-            @php $user = session('user') ?? ['name' => 'Guest', 'surname' => '']; @endphp
-            <span class="me-2 fs-5">{{ $user['name'] }} {{ $user['surname'] }}</span>
+
+          <a href="{{ url('/user/profile') }}"
+            class="d-flex align-items-center text-decoration-none text-dark mt-3 mt-md-0">
+            @auth
+        <span class="me-2 fs-5">{{ Auth::user()->name }} {{ Auth::user()->surname }}</span>
+      @else
+        <span class="me-2 fs-5 text-muted">Guest</span>
+      @endauth
             <div class="rounded-circle bg-light p-2">
               <i class="fas fa-user fa-lg text-primary"></i>
             </div>
-          </div>
+          </a>
         </div>
       </div>
 

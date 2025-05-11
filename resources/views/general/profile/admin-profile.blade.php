@@ -23,7 +23,7 @@
 
   </header>
 
-  <section id="main-content" class="pt-5 mt-5">
+  <section id="main-content" class="pt-5 mt-0">
     <div class="container">
       <div class="admin-card bg-white rounded shadow p-4 mb-4 position-relative">
         <div class="row g-4 align-items-center">
@@ -32,15 +32,15 @@
           </div>
           <div class="col-md-9">
             @auth
-              @php
-                $user = Auth::user();
-              @endphp
-              <h4 class="fw-normal">{{ $user->name }} {{ $user->surname }}</h4>
-              <p class="text-muted mb-1">{{ $user->email }}</p>
-            @else
-              <h4 class="fw-normal">Guest</h4>
-              <p class="text-muted mb-1">unknown@example.com</p>
-            @endauth
+          @php
+          $user = Auth::user();
+        @endphp
+          <h4 class="fw-normal">{{ $user->name }} {{ $user->surname }}</h4>
+          <p class="text-muted mb-1">{{ $user->email }}</p>
+      @else
+        <h4 class="fw-normal">Guest</h4>
+        <p class="text-muted mb-1">unknown@example.com</p>
+      @endauth
           </div>
         </div>
         <button class="btn btn-primary btn-sm add-product-btn" data-bs-toggle="modal" data-bs-target="#addProductModal">

@@ -83,7 +83,6 @@
                   ascending</button>
                 <button id="sort-price-desc" type="button" class="btn btn-light btn-sm w-100 text-muted">Price
                   descending</button>
-                <button id="sort-rating" type="button" class="btn btn-light btn-sm w-100 text-muted">Rating</button>
               </div>
             </div>
 

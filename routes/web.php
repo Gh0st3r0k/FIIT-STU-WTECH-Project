@@ -7,6 +7,7 @@ use App\Http\Controllers\BasketController;
 ////////////////////////////////////////
 use App\Http\Controllers\ProductController;
 use App\Models\Product;
+use App\Http\Controllers\UserController;
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
@@ -17,15 +18,11 @@ Route::put('/products/{id}', [ProductController::class, 'update'])->name('produc
 
 
 
-
-// Загрузка изображения
-// Route::post('/products/{id}/upload-image', [ProductController::class, 'uploadImage'])->name('products.image.upload');
 Route::post('/products/{id}/images', [ProductController::class, 'uploadImage'])->name('products.image.upload');
 
-// Удаление изображения
+
 Route::delete('/products/{product}/images/{image}', [ProductController::class, 'deleteImage'])->name('products.image.delete');
 
-/////////////////////////////////
 Route::get('/main-page', [YourController::class, 'showMainPage']);
 
 Route::get('/main-page', function () {
@@ -48,20 +45,14 @@ Route::get('/admin/catalog', [ProductController::class, 'adminCatalog'])->name('
 Route::get('/user/catalog', [ProductController::class, 'catalog'])->name('catalog');
 
 
-// Route::get('/user/catalog', function () {
-//     $products = Product::orderBy('created_at', 'desc')->get();
-//     return view('general.catalog.user-catalog', compact('products'));
-// });
 Route::get('/user/product/{id}', [ProductController::class, 'userShow'])->name('user.product.show');
 
 Route::view('/contact', 'general.contact.contact');
-// Route::view('/admin/product-card', 'general.product_card.admin-product_card');
 Route::get('/admin/product/{id}', [ProductController::class, 'adminShow'])->name('admin.product.show');
 
 Route::view('/user/product-card', 'general.product_card.user-product_card');
 Route::view('/admin/profile', 'general.profile.admin-profile');
 
-use App\Http\Controllers\UserController;
 
 Route::get('/user/profile', [UserController::class, 'profile'])->middleware('auth');
 

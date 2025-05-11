@@ -83,10 +83,8 @@ class ProductController extends Controller
     {
         $image = ProductImage::where('product_id', $productId)->where('id', $imageId)->firstOrFail();
 
-        // Удаляем файл из storage
         Storage::disk('public')->delete($image->path);
 
-        // Удаляем из базы
         $image->delete();
 
         return back()->with('success', 'Image deleted successfully.');
@@ -111,17 +109,11 @@ class ProductController extends Controller
         return redirect('/admin/catalog')->with('success', 'Product deleted successfully.');
     }
 
-    // public function adminIndex()
-    // {
-    //     $products = Product::with('images')->orderBy('created_at', 'desc')->get();
-    //     return view('general.catalog.admin-catalog', compact('products'));
-    // }
 
     public function userShow($id)
     {
         $product = Product::with('images')->findOrFail($id);
 
-        // Дополнительно загружаем несколько других товаров для блока "You may like"
         $products = Product::with('images')->where('id', '!=', $id)->latest()->take(4)->get();
 
         return view('general.product_card.user-product_card', compact('product', 'products'));
@@ -131,7 +123,12 @@ class ProductController extends Controller
     {
         $query = Product::query();
 
-        // Цена
+        // Поиск по имени
+        if ($request->filled('search')) {
+            $query->where('name', 'LIKE', '%' . $request->input('search') . '%');
+        }
+
+        // Фильтрация по цене
         if ($request->filled('min_price')) {
             $query->where('price', '>=', $request->input('min_price'));
         }
@@ -140,27 +137,41 @@ class ProductController extends Controller
             $query->where('price', '<=', $request->input('max_price'));
         }
 
-        // Тип (категория)
+        // Категории (типы)
         if ($request->has('type')) {
             $query->whereIn('category_type', $request->input('type'));
         }
 
-        // Новизна (5 дней)
+        // Новизна (последние 5 дней)
         if ($request->boolean('is_new')) {
             $query->where('created_at', '>=', \Carbon\Carbon::now()->subDays(5));
         }
 
-        $products = $query->get();
+        // Сортировка
+        $sort = $request->input('sort', 'created_at');
+        $direction = $request->input('direction', 'desc');
+
+        // Пагинация + сохранение параметров фильтрации
+        $products = $query->orderBy($sort, $direction)
+            ->paginate(12)
+            ->withQueryString();
+
+        // Категории и рекомендации
         $categories = \App\Models\CategoryType::all();
+        $recommended = Product::inRandomOrder()->take(4)->get();
 
-        // return view('user-catalog', compact('products', 'categories'));
-        return view('general.catalog.user-catalog', compact('products', 'categories'));
-
+        return view('general.catalog.user-catalog', compact('products', 'categories', 'recommended'));
     }
+
 
     public function adminCatalog(Request $request)
     {
         $query = Product::with('images');
+
+        if ($request->filled('search')) {
+            $query->where('name', 'LIKE', '%' . $request->input('search') . '%');
+        }
+
 
         if ($request->filled('min_price')) {
             $query->where('price', '>=', $request->input('min_price'));
@@ -178,7 +189,12 @@ class ProductController extends Controller
             $query->where('created_at', '>=', Carbon::now()->subDays(5));
         }
 
-        $products = $query->orderBy('created_at', 'desc')->get();
+        $sort = $request->input('sort', 'created_at');
+        $direction = $request->input('direction', 'desc');
+
+        $products = $query->orderBy($sort, $direction)->get();
+
+
         $categories = CategoryType::all();
 
         return view('general.catalog.admin-catalog', compact('products', 'categories'));

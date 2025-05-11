@@ -98,30 +98,58 @@
       <div class="modal-content">
         <div class="modal-header">
           <h2 class="modal-title fw-bold" id="paymentModalLabel">Delivery form</h2>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close btn-lg" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <p class="fs-5 fw-semibold text-success">
             Delivery date:<br />
             <span class="text-success">Nov. 26 – Dec. 26</span>
           </p>
-          <form>
-            <div class="mb-3"><label class="form-label">Name</label><input type="text" class="form-control" name="fname" /></div>
-            <div class="mb-3"><label class="form-label">Surname</label><input type="text" class="form-control" name="lname" /></div>
-            <div class="mb-3"><label class="form-label">Email</label><input type="email" class="form-control" name="email" /></div>
-            <div class="mb-3"><label class="form-label">Address</label><input type="text" class="form-control" name="address" /></div>
-            <div class="row mt-4">
-              <div class="col-12 col-md-6 mb-2">
-                <button type="button" class="btn btn-dark w-100"><i class="fab fa-apple-pay me-2"></i> Apple Pay</button>
-              </div>
-              <div class="col-12 col-md-6">
-                <button type="button" class="btn btn-success w-100"><i class="fab fa-google-pay me-2"></i> Google Pay</button>
-              </div>
+          <form id="orderForm" method="POST">
+            @csrf
+            <div class="mb-3">
+              <label class="form-label">Name</label>
+              <input type="text" class="form-control" name="fname" autocomplete="given-name" required />
             </div>
+            <div class="mb-3">
+              <label class="form-label">Surname</label>
+              <input type="text" class="form-control" name="lname" autocomplete="family-name" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" name="email" autocomplete="email" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Phone</label>
+              <input type="tel" class="form-control" name="phone" autocomplete="tel" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Address</label>
+              <input type="text" class="form-control" name="address" autocomplete="street-address" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Delivery method</label>
+              <select class="form-select" name="delivery" required>
+                <option value="">Select</option>
+                <option value="pickup">Pickup</option>
+                <option value="courier">Courier</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Payment method</label>
+              <select class="form-select" name="payment" required>
+                <option value="">Select</option>
+                <option value="apple">Apple Pay</option>
+                <option value="google">Google Pay</option>
+                <option value="cash">Cash</option>
+              </select>
+            </div>
+            <button type="button" class="btn btn-primary w-100 mt-3" id="submitOrder">Place Order</button>
           </form>
         </div>
       </div>
     </div>
   </div>
+
 </body>
 </html>

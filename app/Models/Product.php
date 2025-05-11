@@ -15,4 +15,11 @@ class Product extends Model
         return $this->hasMany(ProductImage::class);
     }
 
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'product_in_order', 'product_id', 'order_id')
+                    ->withPivot('count');
+    }
+
 }

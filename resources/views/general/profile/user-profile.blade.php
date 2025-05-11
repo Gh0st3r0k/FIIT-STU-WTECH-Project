@@ -36,8 +36,7 @@
                 <h4 class="fw-normal">Guest</h4>
                 <p class="text-muted mb-1">unknown@example.com</p>
               @endauth
-              <div class="row mt-3 g-2">
-                <!-- Валюта -->
+              <!-- <div class="row mt-3 g-2">
                 <div class="col-12 col-sm-6 d-flex align-items-center gap-2">
                   <span class="text-muted">Currency</span>
                   <select class="form-select form-select-sm">
@@ -45,7 +44,6 @@
                     <option value="eur">EUR</option>
                   </select>
                 </div>
-                <!-- Язык -->
                 <div class="col-12 col-sm-6 d-flex align-items-center gap-2">
                   <span class="text-muted">Language</span>
                   <select class="form-select form-select-sm">
@@ -53,7 +51,7 @@
                     <option value="sk">SK</option>
                   </select>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -66,27 +64,24 @@
         <div class="bg-white rounded shadow p-4 history-block">
           <h3 class="text-uppercase fw-bold fs-4 mb-3">History</h3>
           <div class="history-list">
-            <div class="d-flex align-items-center border rounded p-2 mb-2">
-              <img src="{{ asset('img/test_gal1.jpg') }}" alt="History item" class="history-item-image me-3" />
-              <div class="flex-grow-1">
-                <p class="mb-0 fw-bold">Some old order #1</p>
-              </div>
-              <span class="ms-auto fw-bold">$50</span>
-            </div>
-            <div class="d-flex align-items-center border rounded p-2 mb-2">
-              <img src="{{ asset('img/test_gal2.jpg') }}" alt="History item" class="history-item-image me-3" />
-              <div class="flex-grow-1">
-                <p class="mb-0 fw-bold">Some old order #2</p>
-              </div>
-              <span class="ms-auto fw-bold">$99</span>
-            </div>
-            <div class="d-flex align-items-center border rounded p-2 mb-2">
-              <img src="{{ asset('img/test_gal2.jpg') }}" alt="History item" class="history-item-image me-3" />
-              <div class="flex-grow-1">
-                <p class="mb-0 fw-bold">Some old order #3</p>
-              </div>
-              <span class="ms-auto fw-bold">$75</span>
-            </div>
+            @php use Illuminate\Support\Str; @endphp
+            @forelse ($orders as $order)
+              @foreach ($order->products as $product)
+                <div class="d-flex align-items-center border rounded p-2 mb-2">
+                  <img
+                      src="{{ Str::startsWith($product->image, ['http://', 'https://']) ? $product->image : asset('storage/' . $product->image) }}"
+                      alt="History item"
+                      class="history-item-image me-3"
+                    />
+                    <div class="flex-grow-1">
+                    <p class="mb-0 fw-bold">{{ $product->name }}</p>
+                  </div>
+                  <span class="ms-auto fw-bold">${{ number_format($product->price * $product->pivot->count, 2) }}</span>
+                </div>
+              @endforeach
+            @empty
+              <p class="text-muted">No past orders yet.</p>
+            @endforelse
           </div>
         </div>
       </div>

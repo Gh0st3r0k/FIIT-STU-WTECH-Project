@@ -48,7 +48,7 @@
         </button>
       </div>
 
-      <div class="bg-white rounded shadow p-4">
+      <!-- <div class="bg-white rounded shadow p-4">
         <h3 class="text-uppercase fw-bold fs-4 mb-3">History</h3>
 
         {{-- Пример истории заказов --}}
@@ -80,7 +80,7 @@
             <span class="ms-auto fw-bold">$75</span>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </section>
 

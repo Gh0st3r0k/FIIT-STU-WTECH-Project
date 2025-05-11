@@ -47,9 +47,9 @@
                                 <div class="invalid-feedback d-block ms-2" id="passwordError"></div>
                             </div>
                             <button type="button" id="loginBtn" class="btn btn-dark w-100">Sign In</button>
-                            <div class="mt-2">
+                            <!-- <div class="mt-2">
                                 <a href="#" class="link-secondary text-decoration-underline">Forgot password?</a>
-                            </div>
+                            </div> -->
                         </form>
                     </div>
                 </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Basket;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
@@ -29,13 +30,17 @@ class RegisterController extends Controller
         }
 
         // Сохраняем
-        User::create([
+        $user = User::create([
             'name' => $data['name'],
             'surname' => $data['surname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'role' => 'user'
         ]);
+        
+        Basket::create([
+            'id_user' => $user->id
+        ]);        
 
         return response()->json(['message' => 'Registration successful!']);
     }

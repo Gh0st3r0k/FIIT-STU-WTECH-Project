@@ -34,7 +34,8 @@ Route::get('/main-page', function () {
 });
 
 Route::get('/', function () {
-    return view('general.main_page.main');
+    $products = Product::with('images')->latest()->get();
+    return view('general.main_page.main', compact('products'));
 });
 
 Route::view('/login', 'auth.login.login');
@@ -57,7 +58,11 @@ Route::get('/admin/product/{id}', [ProductController::class, 'adminShow'])->name
 
 Route::view('/user/product-card', 'general.product_card.user-product_card');
 Route::view('/admin/profile', 'general.profile.admin-profile');
-Route::view('/user/profile', 'general.profile.user-profile');
+
+use App\Http\Controllers\UserController;
+
+Route::get('/user/profile', [UserController::class, 'profile'])->middleware('auth');
+
 
 Route::get('/logout', function () {
     session()->forget('user');
@@ -138,7 +143,6 @@ Route::post('/api/basket/update', [\App\Http\Controllers\BasketController::class
 
 
 
-
 use App\Http\Controllers\Auth\RegisterController;
 
 Route::view('/user/registration', 'auth.registration.user-registration')->name('register.form');
@@ -155,6 +159,16 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::view('/admin/registration', 'auth.registration.admin-registration')->name('register.admin.form');
 Route::post('/admin/register', [RegisterController::class, 'registerAdmin'])->name('register.admin.submit');
+
+
+use App\Http\Controllers\OrderController;
+
+Route::post('/order/auth', [OrderController::class, 'auth'])->middleware('auth');
+Route::post('/order/guest', [OrderController::class, 'guest']);
+
+
+Route::post('/admin/orders/{order}/status', [\App\Http\Controllers\AdminOrderController::class, 'updateStatus']);
+Route::get('/admin/orders', [\App\Http\Controllers\AdminOrderController::class, 'index']);
 
 
 

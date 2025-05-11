@@ -113,4 +113,68 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   }
+
+
+  const form = document.getElementById("orderForm");
+  const submitBtn = document.getElementById("submitOrder");
+
+  submitBtn.addEventListener("click", async function () {
+    const formData = new FormData(form);
+    const data = {
+      name: formData.get("fname"),
+      surname: formData.get("lname"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      address: formData.get("address"),
+      delivery_method: formData.get("delivery"),
+      payment_method: formData.get("payment"),
+    };
+
+    try {
+      if (isAuthenticated) {
+        // отправка для авторизованного пользователя
+        const res = await fetch("/order/auth", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
+          },
+          body: JSON.stringify(data)
+        });
+
+        const result = await res.json();
+        alert(result.message || "Order placed!");
+      } else {
+        // берём корзину из localStorage
+        const basket = JSON.parse(localStorage.getItem("basket") || "[]");
+
+        const res = await fetch("/order/guest", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
+          },
+          body: JSON.stringify({
+            ...data,
+            basket: basket
+          })
+        });
+
+        const result = await res.json();
+        alert(result.message || "Order placed!");
+        localStorage.removeItem("basket");
+      }
+
+      // закрыть модалку и перезагрузить страницу
+      const modal = bootstrap.Modal.getInstance(document.getElementById("paymentModal"));
+      modal.hide();
+      setTimeout(() => location.reload(), 500);
+    } catch (e) {
+      alert("Error placing order.");
+      console.error(e);
+    }
+  });
+  
 });
+
+

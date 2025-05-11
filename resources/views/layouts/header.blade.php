@@ -31,7 +31,7 @@
 
           {{-- Basket --}}
           <li class="nav-item">
-            <a href="{{ url($isAdmin ? '/admin/basket' : '/user/basket') }}"
+            <a href="{{ url($isAdmin ? '/admin/orders' : '/user/basket') }}"
               class="nav-link {{ request()->is($isAdmin ? 'admin/basket' : 'user/basket') ? 'border-bottom border-2 border-primary fw-bold' : '' }}">
               Basket
             </a>

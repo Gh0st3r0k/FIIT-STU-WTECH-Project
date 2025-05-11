@@ -24,6 +24,9 @@
 
     <!-- Custom JS -->
     <script src="{{ asset('js/general/basket/admin-basket.js') }}" defer></script>
+
+    
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
 
@@ -36,41 +39,32 @@
         <div class="container">
             <h2 class="pt-2 pb-2 mb-4 bg-white rounded shadow">All Orders</h2>
 
-            {{-- Заказ 1 --}}
-            <div class="bg-white rounded shadow p-4 mb-4 admin-order-block">
-                <div class="d-flex justify-content-between align-items-center flex-wrap mb-3">
-                    <h5 class="fw-bold mb-0">User: Name Surname</h5>
-                    <button class="btn btn-warning btn-sm status-button">Ready🔄</button>
-                </div>
-                <div class="ms-2">
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Text Name (product 1)</span>
-                        <span class="fw-bold">x3</span>
+            @foreach ($orders as $order)
+                <div class="bg-white rounded shadow p-4 mb-4 admin-order-block" data-order-id="{{ $order->id }}">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap mb-3">
+                        <h5 class="fw-bold mb-0">
+                            User:
+                            @if ($order->user)
+                                {{ $order->user->name }} {{ $order->user->surname }}
+                            @elseif ($order->nonUser)
+                                {{ $order->nonUser->name }} {{ $order->nonUser->surname }}
+                            @else
+                                Unknown
+                            @endif
+                        </h5>
+                        <button class="btn btn-warning btn-sm status-button">Ready🔄</button>
                     </div>
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Text Name 2</span>
-                        <span class="fw-bold">x2</span>
+                    <div class="ms-2">
+                        @foreach ($order->products as $product)
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>{{ $product->name }}</span>
+                                <span class="fw-bold">x{{ $product->pivot->count }}</span>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
-            </div>
+            @endforeach
 
-            {{-- Заказ 2 --}}
-            <div class="bg-white rounded shadow p-4 mb-4 admin-order-block">
-                <div class="d-flex justify-content-between align-items-center flex-wrap mb-3">
-                    <h5 class="fw-bold mb-0">User: Another Name</h5>
-                    <button class="btn btn-warning btn-sm status-button">Ready🔄</button>
-                </div>
-                <div class="ms-2">
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Dog Food Premium</span>
-                        <span class="fw-bold">x1</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Smart Watch</span>
-                        <span class="fw-bold">x2</span>
-                    </div>
-                </div>
-            </div>
 
         </div>
     </section>

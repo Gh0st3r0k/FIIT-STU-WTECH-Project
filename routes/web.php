@@ -16,6 +16,8 @@ Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('pr
 Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
 
 
+
+
 // Загрузка изображения
 // Route::post('/products/{id}/upload-image', [ProductController::class, 'uploadImage'])->name('products.image.upload');
 Route::post('/products/{id}/images', [ProductController::class, 'uploadImage'])->name('products.image.upload');
@@ -24,7 +26,12 @@ Route::post('/products/{id}/images', [ProductController::class, 'uploadImage'])-
 Route::delete('/products/{product}/images/{image}', [ProductController::class, 'deleteImage'])->name('products.image.delete');
 
 /////////////////////////////////
+Route::get('/main-page', [YourController::class, 'showMainPage']);
 
+Route::get('/main-page', function () {
+    $products = Product::with('images')->latest()->get();
+    return view('general.main_page.main', compact('products'));
+});
 
 Route::get('/', function () {
     return view('general.main_page.main');
@@ -45,7 +52,6 @@ Route::get('/user/catalog', function () {
 Route::get('/user/product/{id}', [ProductController::class, 'userShow'])->name('user.product.show');
 
 Route::view('/contact', 'general.contact.contact');
-Route::view('/main-page', 'general.main_page.main');
 // Route::view('/admin/product-card', 'general.product_card.admin-product_card');
 Route::get('/admin/product/{id}', [ProductController::class, 'adminShow'])->name('admin.product.show');
 

@@ -10,11 +10,6 @@ use App\Models\ProductImage;
 class ProductController extends Controller
 {
 
-    public function userShow($id)
-    {
-        $product = Product::with('images')->findOrFail($id);
-        return view('general.product_card.user-product_card', compact('product'));
-    }
     public function index(Request $request)
     {
         $sort = $request->get('sort', 'created_at');
@@ -119,6 +114,17 @@ class ProductController extends Controller
         $products = Product::with('images')->orderBy('created_at', 'desc')->get();
         return view('general.catalog.admin-catalog', compact('products'));
     }
+
+    public function userShow($id)
+    {
+        $product = Product::with('images')->findOrFail($id);
+
+        // Дополнительно загружаем несколько других товаров для блока "You may like"
+        $products = Product::with('images')->where('id', '!=', $id)->latest()->take(4)->get();
+
+        return view('general.product_card.user-product_card', compact('product', 'products'));
+    }
+
 }
 
 

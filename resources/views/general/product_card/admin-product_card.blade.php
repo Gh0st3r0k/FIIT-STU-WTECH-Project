@@ -12,7 +12,6 @@
 </head>
 
 <body class="body">
-  {{-- HEADER --}}
   <header>@include('layouts.header')</header>
 
   <section id="main-content" class="mt-0">
@@ -36,7 +35,6 @@
       <div class="bg-white rounded shadow p-4 mb-4">
         <div class="row g-5 align-items-start">
 
-          {{-- Image & controls --}}
           <div class="col-md-6">
             <div class="position-relative border border-primary rounded p-3 admin-img-container">
               <div class="d-flex justify-content-end mb-2 gap-2">
@@ -83,7 +81,6 @@
         @endif
             </div>
           </div>
-          {{-- Product Details --}}
           <div class="col-md-6">
             <form id="updateForm" method="POST" action="{{ route('products.update', $product->id) }}">
               @csrf
@@ -153,7 +150,6 @@
       </div>
     </div>
 
-    {{-- Related Products --}}
     <div class="bg-white rounded shadow p-4">
       <h3 class="mb-3">You may like</h3>
       <div class="row" id="productsCard">
@@ -177,7 +173,6 @@
     </div>
   </section>
 
-  {{-- FOOTER --}}
   @include('layouts.footer')
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

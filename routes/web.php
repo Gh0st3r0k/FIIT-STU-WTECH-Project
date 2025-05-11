@@ -26,10 +26,10 @@ Route::delete('/products/{product}/images/{image}', [ProductController::class, '
 
 Route::get('/main-page', [ProductController::class, 'main'])->name('main.page');
 
-Route::get('/main-page', function () {
-    $products = Product::with('images')->latest()->get();
-    return view('general.main_page.main', compact('products'));
-});
+// Route::get('/main-page', function () {
+//     $products = Product::with('images')->latest()->get();
+//     return view('general.main_page.main', compact('products'));
+// });
 
 Route::get('/', function () {
     $products = Product::with('images')->latest()->get();

@@ -202,16 +202,27 @@ class ProductController extends Controller
 
     public function main(Request $request)
     {
+        $query = Product::with('images');
+
+        // Поиск по имени
+        if ($request->filled('search')) {
+            $query->where('name', 'LIKE', '%' . $request->input('search') . '%');
+        }
+
+        // Сортировка
         $sort = $request->input('sort', 'created_at');
         $direction = $request->input('direction', 'desc');
 
-        $products = Product::with('images')
-            ->orderBy($sort, $direction)
+        // Пагинация с сохранением параметров
+        $products = $query->orderBy($sort, $direction)
             ->paginate(12)
-            ->withQueryString(); // сохраняет параметры при переключении страниц
+            ->withQueryString();
 
-        return view('general.main_page', compact('products'));
+        return view('general.main_page.main', compact('products'));
     }
+
+
+
 
 
 }

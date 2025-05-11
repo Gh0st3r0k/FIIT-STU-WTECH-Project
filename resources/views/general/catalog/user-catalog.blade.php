@@ -158,7 +158,6 @@
           @endforelse
         </div>
 
-{{-- ПАГИНАЦИЯ --}}
 
 @if ($products->hasPages())
   <div class="mt-4 d-flex justify-content-center">

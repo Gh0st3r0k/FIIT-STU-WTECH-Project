@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,16 +11,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="{{ asset('css/general/basket/user-basket.css') }}" />
 
-  {{-- CSRF Token --}}
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  {{-- Custom JS --}}
   <script src="{{ asset('js/general/basket/user-basket.js') }}" defer></script>
 </head>
 
 <body data-auth="{{ Auth::check() ? '1' : '0' }}">
 
-  {{-- HEADER --}}
   <header>
     @include('layouts.header')
   </header>
@@ -33,10 +31,10 @@
           </div>
           <div class="d-flex align-items-center mt-3 mt-md-0">
             @auth
-              <span class="me-2 fs-5">{{ Auth::user()->name }} {{ Auth::user()->surname }}</span>
-            @else
-              <span class="me-2 fs-5 text-muted">Guest</span>
-            @endauth
+        <span class="me-2 fs-5">{{ Auth::user()->name }} {{ Auth::user()->surname }}</span>
+      @else
+        <span class="me-2 fs-5 text-muted">Guest</span>
+      @endauth
             <div class="rounded-circle bg-light p-2">
               <i class="fas fa-user fa-lg text-primary"></i>
             </div>
@@ -44,37 +42,35 @@
         </div>
       </div>
 
-      {{-- Product Items --}}
       <div class="container">
 
         <div class="bg-white rounded shadow p-4 mb-4" id="basketContent">
           @auth
-            @foreach($items as $item)
-              <div class="basket-item row py-3 align-items-center"
-                  data-price="{{ $item['price'] }}"
-                  data-product-id="{{ $item['id'] }}">
-                <div class="col-3">
-                  <img src="{{ asset($item['image']) }}" alt="Product Image" class="img-fluid basket-img" />
-                </div>
-                <div class="col-3">{{ $item['name'] }}</div>
-                <div class="col-2">${{ $item['price'] }}</div>
-                <div class="col-2">
-                  <input type="number" class="form-control basket-qty" value="{{ $item['count'] }}" min="0" />
-                </div>
-                <div class="col-2 fw-bold item-subtotal">${{ number_format($item['subtotal'], 2) }}</div>
-              </div>
-              <hr />
-            @endforeach
-          @endauth
+          @foreach($items as $item)
+        <div class="basket-item row py-3 align-items-center" data-price="{{ $item['price'] }}"
+        data-product-id="{{ $item['id'] }}">
+        <div class="col-3">
+          <img src="{{ asset($item['image']) }}" alt="Product Image" class="img-fluid basket-img" />
+        </div>
+        <div class="col-3">{{ $item['name'] }}</div>
+        <div class="col-2">${{ $item['price'] }}</div>
+        <div class="col-2">
+          <input type="number" class="form-control basket-qty" value="{{ $item['count'] }}" min="0" />
+        </div>
+        <div class="col-2 fw-bold item-subtotal">${{ number_format($item['subtotal'], 2) }}</div>
+        </div>
+        <hr />
+        @endforeach
+      @endauth
         </div>
 
         <div class="row justify-content-end mt-4">
           <div class="col-md-4 text-end fw-bold fs-5" id="basketTotal">
             @auth
-              Total: ${{ number_format($total, 2) }}
-            @else
-              Total: $0.00
-            @endauth
+        Total: ${{ number_format($total, 2) }}
+      @else
+        Total: $0.00
+      @endauth
           </div>
         </div>
       </div>
@@ -82,17 +78,16 @@
 
 
       <div class="text-center">
-        <button class="btn btn-dark btn-lg pay-button" data-bs-toggle="modal" data-bs-target="#paymentModal">PAY</button>
+        <button class="btn btn-dark btn-lg pay-button" data-bs-toggle="modal"
+          data-bs-target="#paymentModal">PAY</button>
       </div>
     </div>
   </section>
 
-  {{-- FOOTER --}}
   @include('layouts.footer')
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  {{-- Modal --}}
   <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -152,4 +147,5 @@
   </div>
 
 </body>
+
 </html>

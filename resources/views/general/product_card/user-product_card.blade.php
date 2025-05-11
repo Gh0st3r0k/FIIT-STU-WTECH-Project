@@ -15,12 +15,10 @@
 </head>
 
 <body class="body">
-  {{-- HEADER --}}
   <header>@include('layouts.header')</header>
 
   <section id="main-content" class="mt-0">
     <div class="container">
-      {{-- Product Info --}}
       <div class="catalog-name bg-white p-2 rounded shadow mb-4">
         <div class="d-flex justify-content-between align-items-center flex-wrap ps-4 pe-4">
           <div class="d-flex flex-column">
@@ -44,7 +42,6 @@
 
       <div class="bg-white rounded shadow p-4 mb-4">
         <div class="row g-5 align-items-center">
-          {{-- Image carousel --}}
           <div class="col-md-6">
             @if ($product->images->count())
           <div id="carouselProductImages" class="carousel slide" data-bs-ride="carousel">
@@ -74,16 +71,11 @@
       @endif
           </div>
 
-          {{-- Product Details --}}
           <div class="col-md-6">
             <h3 class="mb-3">{{ $product->name }}</h3>
             <div class="d-flex align-items-center mb-3">
               <h4 class="text-muted me-3 mb-0">${{ number_format($product->price, 2) }}</h4>
-              <!-- <select class="form-select form-select-sm w-auto">
-                <option value="usd" selected>USD</option>
-                <option value="eur">EUR</option>
-                <option value="uah">UAH</option>
-              </select> -->
+
             </div>
 
             <div class="mb-3 d-flex align-items-center gap-2">
@@ -128,7 +120,6 @@
         </div>
       </div>
 
-      {{-- Product Details --}}
       <div class="bg-white rounded shadow p-4 mb-4">
         <h3>Product Details</h3>
         <div class="p-3">
@@ -136,7 +127,6 @@
         </div>
       </div>
 
-      {{-- You may like --}}
       <div class="bg-white rounded shadow p-4">
         <h3 class="mb-3">You may like</h3>
         <div class="row">
@@ -171,7 +161,6 @@
     </div>
   </section>
 
-  {{-- FOOTER --}}
   @include('layouts.footer')
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

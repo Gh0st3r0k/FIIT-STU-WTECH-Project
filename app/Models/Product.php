@@ -19,7 +19,13 @@ class Product extends Model
     public function orders()
     {
         return $this->belongsToMany(Order::class, 'product_in_order', 'product_id', 'order_id')
-                    ->withPivot('count');
+            ->withPivot('count');
     }
+
+    public function category()
+    {
+        return $this->belongsTo(CategoryType::class, 'category_type');
+    }
+
 
 }

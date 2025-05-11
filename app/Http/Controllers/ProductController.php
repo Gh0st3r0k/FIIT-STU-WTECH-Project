@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Product;
 use App\Models\ProductImage;
+use Carbon\Carbon;
+use App\Models\CategoryType;
 
 class ProductController extends Controller
 {
@@ -124,6 +126,40 @@ class ProductController extends Controller
 
         return view('general.product_card.user-product_card', compact('product', 'products'));
     }
+
+    public function catalog(Request $request)
+    {
+        $query = Product::query();
+
+        // Цена
+        if ($request->filled('min_price')) {
+            $query->where('price', '>=', $request->input('min_price'));
+        }
+
+        if ($request->filled('max_price')) {
+            $query->where('price', '<=', $request->input('max_price'));
+        }
+
+        // Тип (категория)
+        if ($request->has('type')) {
+            $query->whereIn('category_type', $request->input('type'));
+        }
+
+        // Новизна (5 дней)
+        if ($request->boolean('is_new')) {
+            $query->where('created_at', '>=', \Carbon\Carbon::now()->subDays(5));
+        }
+
+        $products = $query->get();
+        $categories = \App\Models\CategoryType::all();
+
+        // return view('user-catalog', compact('products', 'categories'));
+        return view('general.catalog.user-catalog', compact('products', 'categories'));
+
+    }
+
+
+
 
 }
 

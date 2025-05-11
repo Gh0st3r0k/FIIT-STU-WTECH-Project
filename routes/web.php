@@ -42,14 +42,16 @@ Route::view('/login', 'auth.login.login');
 
 Route::view('/error', 'error.error');
 Route::view('/admin/basket', 'general.basket.admin-basket');
-// Route::view(uri: '/admin/catalog', 'general.catalog.admin-catalog');
-// Route::view('/user/catalog', 'general.catalog.user-catalog');
+
 Route::get('/admin/catalog', [ProductController::class, 'adminIndex'])->name('admin.catalog');
 
-Route::get('/user/catalog', function () {
-    $products = Product::orderBy('created_at', 'desc')->get();
-    return view('general.catalog.user-catalog', compact('products'));
-});
+Route::get('/user/catalog', [ProductController::class, 'catalog'])->name('catalog');
+
+
+// Route::get('/user/catalog', function () {
+//     $products = Product::orderBy('created_at', 'desc')->get();
+//     return view('general.catalog.user-catalog', compact('products'));
+// });
 Route::get('/user/product/{id}', [ProductController::class, 'userShow'])->name('user.product.show');
 
 Route::view('/contact', 'general.contact.contact');

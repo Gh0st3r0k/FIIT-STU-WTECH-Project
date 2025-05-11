@@ -39,7 +39,6 @@
             @else
               <span class="me-2 fs-5 text-muted">Guest</span>
             @endauth
-
             <div class="rounded-circle bg-light p-2">
               <i class="fas fa-user fa-lg text-primary"></i>
             </div>
@@ -48,48 +47,92 @@
       </div>
 
       <div class="bg-white rounded shadow p-4">
-        <div class="row" id="productsCard">
-          @foreach ($products as $product)
-        <div class="col-6 col-sm-4 col-md-3 mb-4">
-        <div class="card h-100 shadow-sm card-hover"
-          onclick="window.location='{{ route('user.product.show', $product->id) }}'">
-          @if ($product->images->count())
-        <div id="carouselUser{{ $product->id }}" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          @foreach ($product->images as $index => $image)
-        <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-        <img src="{{ asset('storage/' . $image->path) }}" class="d-block w-100 rounded"
-        style="height: 200px; object-fit: cover;" alt="Product Image">
-        </div>
-        @endforeach
-        </div>
-        @if ($product->images->count() > 1)
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselUser{{ $product->id }}"
-        data-bs-slide="prev">
-        <span class="carousel-control-prev-icon bg-dark rounded-circle"></span>
-        <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselUser{{ $product->id }}"
-        data-bs-slide="next">
-        <span class="carousel-control-next-icon bg-dark rounded-circle"></span>
-        <span class="visually-hidden">Next</span>
-        </button>
-      @endif
-        </div>
-      @else
-        <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="No Image">
-      @endif
-          <div class="card-body text-center">
-          <h5 class="card-title fs-6">{{ $product->name }}</h5>
-          <p class="card-text text-muted mb-2">${{ number_format($product->price, 2) }}</p>
-          <button class="btn btn-outline-primary btn-sm px-3 py-1"
-            onclick="event.stopPropagation(); addToCart({{ $product->id }})">
-            <i class="fas fa-cart-plus me-1"></i> Add to Cart
-          </button>
+        <div class="row">
+          <!-- ФИЛЬТРЫ -->
+          <div class="col-lg-3 mb-4">
+            <form method="GET" action="{{ route('catalog') }}">
+              <div class="mb-3">
+                <label class="form-label fw-bold">Price:</label>
+                <input type="number" name="min_price" value="{{ request('min_price') }}" class="form-control mb-2" placeholder="from">
+                <input type="number" name="max_price" value="{{ request('max_price') }}" class="form-control" placeholder="to">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold">Categories:</label>
+                @foreach ($categories as $cat)
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="type[]" value="{{ $cat->id }}"
+                      {{ in_array($cat->id, (array) request('type')) ? 'checked' : '' }}>
+                    <label class="form-check-label">
+                      {{ $cat->name }}
+                    </label>
+                  </div>
+                @endforeach
+              </div>
+
+              <div class="mb-3">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="is_new" value="1"
+                    {{ request('is_new') ? 'checked' : '' }}>
+                  <label class="form-check-label fw-bold">
+                    Only new (5 days)
+
+                  </label>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100">Filter</button>
+            </form>
           </div>
-        </div>
-        </div>
-      @endforeach
+
+          <!-- КАТАЛОГ -->
+          <div class="col-lg-9">
+            <div class="row" id="productsCard">
+              @forelse ($products as $product)
+                <div class="col-6 col-sm-4 col-md-4 mb-4">
+                  <div class="card h-100 shadow-sm card-hover"
+                    onclick="window.location='{{ route('user.product.show', $product->id) }}'">
+                    @if ($product->images->count())
+                      <div id="carouselUser{{ $product->id }}" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                          @foreach ($product->images as $index => $image)
+                            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                              <img src="{{ asset('storage/' . $image->path) }}" class="d-block w-100 rounded"
+                                style="height: 200px; object-fit: cover;" alt="Product Image">
+                            </div>
+                          @endforeach
+                        </div>
+                        @if ($product->images->count() > 1)
+                          <button class="carousel-control-prev" type="button" data-bs-target="#carouselUser{{ $product->id }}"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon bg-dark rounded-circle"></span>
+                            <span class="visually-hidden">Previous</span>
+                          </button>
+                          <button class="carousel-control-next" type="button" data-bs-target="#carouselUser{{ $product->id }}"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon bg-dark rounded-circle"></span>
+                            <span class="visually-hidden">Next</span>
+                          </button>
+                        @endif
+                      </div>
+                    @else
+                      <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="No Image">
+                    @endif
+                    <div class="card-body text-center">
+                      <h5 class="card-title fs-6">{{ $product->name }}</h5>
+                      <p class="card-text text-muted mb-2">${{ number_format($product->price, 2) }}</p>
+                      <button class="btn btn-outline-primary btn-sm px-3 py-1"
+                        onclick="event.stopPropagation(); addToCart({{ $product->id }})">
+                        <i class="fas fa-cart-plus me-1"></i> Add to Cart
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              @empty
+                <p class="text-muted">There are no items matching the filters.</p>
+              @endforelse
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -99,7 +142,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     function addToCart(productId) {
-      // Later implementation: send request to backend/cart controller
       alert('Product ' + productId + ' added to cart (placeholder logic).');
     }
   </script>

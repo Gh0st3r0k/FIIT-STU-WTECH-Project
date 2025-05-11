@@ -23,7 +23,8 @@ Route::post('/products/{id}/images', [ProductController::class, 'uploadImage'])-
 
 Route::delete('/products/{product}/images/{image}', [ProductController::class, 'deleteImage'])->name('products.image.delete');
 
-Route::get('/main-page', [YourController::class, 'showMainPage']);
+
+Route::get('/main-page', [ProductController::class, 'main'])->name('main.page');
 
 Route::get('/main-page', function () {
     $products = Product::with('images')->latest()->get();

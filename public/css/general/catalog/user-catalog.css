@@ -103,8 +103,28 @@
 }
 
 
+  /* .pagination {
+    font-size: 0.9rem;
+    gap: 0.25rem;
+  }
 
+  .pagination .page-link {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.9rem;
+  }
 
+  .pagination .page-item {
+    margin: 0 2px;
+  } */
+
+  .pagination .page-item:first-child,
+  .pagination .page-item:last-child {
+    display: none !important;
+  }
+svg.w-5 {
+  width: 0.6em !important;
+  height: 0.6em !important;
+}
 
 
 

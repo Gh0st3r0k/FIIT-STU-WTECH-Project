@@ -172,7 +172,6 @@ class ProductController extends Controller
             $query->where('name', 'LIKE', '%' . $request->input('search') . '%');
         }
 
-
         if ($request->filled('min_price')) {
             $query->where('price', '>=', $request->input('min_price'));
         }
@@ -192,14 +191,27 @@ class ProductController extends Controller
         $sort = $request->input('sort', 'created_at');
         $direction = $request->input('direction', 'desc');
 
-        $products = $query->orderBy($sort, $direction)->get();
-
+        $products = $query->orderBy($sort, $direction)
+            ->paginate(12) // << заменили get() на paginate()
+            ->withQueryString();
 
         $categories = CategoryType::all();
 
         return view('general.catalog.admin-catalog', compact('products', 'categories'));
     }
 
+    public function main(Request $request)
+    {
+        $sort = $request->input('sort', 'created_at');
+        $direction = $request->input('direction', 'desc');
+
+        $products = Product::with('images')
+            ->orderBy($sort, $direction)
+            ->paginate(12)
+            ->withQueryString(); // сохраняет параметры при переключении страниц
+
+        return view('general.main_page', compact('products'));
+    }
 
 
 }

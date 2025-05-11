@@ -163,6 +163,11 @@
               </div>
             </div>
 
+@if ($products->hasPages())
+  <div class="mt-4 d-flex justify-content-center">
+    {{ $products->appends(request()->except('page'))->links() }}
+  </div>
+@endif
 
           </div>
         </div>

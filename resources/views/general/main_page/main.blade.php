@@ -21,7 +21,7 @@
     @include('layouts.header')
   </header>
 
-  <section id="main-content" class="mt-5">
+  <section id="main-content" class="mt-0">
     <div class="container-fluid">
       <div class="row">
 
@@ -78,20 +78,27 @@
                 </span>
               </div>
               <div class="sort-buttons-grid w-100 w-md-auto">
-                <button id="sort-new" type="button" class="btn btn-dark btn-sm w-100">New</button>
-                <button id="sort-price-asc" type="button" class="btn btn-light btn-sm w-100 text-muted">Price
-                  ascending</button>
-                <button id="sort-price-desc" type="button" class="btn btn-light btn-sm w-100 text-muted">Price
-                  descending</button>
+                <a href="{{ request()->fullUrlWithQuery(['sort' => 'created_at', 'direction' => 'desc']) }}"
+                  class="btn btn-sm w-100 {{ request('sort') === 'created_at' ? 'btn-dark' : 'btn-light text-muted' }}">
+                  New
+                </a>
+                <a href="{{ request()->fullUrlWithQuery(['sort' => 'price', 'direction' => 'asc']) }}"
+                  class="btn btn-sm w-100 {{ request('sort') === 'price' && request('direction') === 'asc' ? 'btn-dark' : 'btn-light text-muted' }}">
+                  Price ascending
+                </a>
+                <a href="{{ request()->fullUrlWithQuery(['sort' => 'price', 'direction' => 'desc']) }}"
+                  class="btn btn-sm w-100 {{ request('sort') === 'price' && request('direction') === 'desc' ? 'btn-dark' : 'btn-light text-muted' }}">
+                  Price descending
+                </a>
               </div>
+
             </div>
 
             <div class="row" id="productsCard">
               @foreach ($products as $product)
             <div class="col-6 col-sm-4 col-md-3 mb-4">
-            <div class="card h-100 shadow-sm card-hover"
-                    data-product-id="{{ $product->id }}"
-                    onclick="window.location='{{ route('user.product.show', $product->id) }}'">
+            <div class="card h-100 shadow-sm card-hover" data-product-id="{{ $product->id }}"
+              onclick="window.location='{{ route('user.product.show', $product->id) }}'">
               @if ($product->images->count())
             <div id="carouselMain{{ $product->id }}" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">

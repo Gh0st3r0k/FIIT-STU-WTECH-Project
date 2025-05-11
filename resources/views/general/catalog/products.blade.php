@@ -14,7 +14,7 @@
 </head>
 
 <body class="bg-light">
-    <div class="container mt-5 pt-4">
+    <div class="container mt-0 pt-4">
         <h2 class="fw-bold mb-4">Catalog</h2>
 
         <!-- Сортировка -->

@@ -17,7 +17,11 @@ class ProductController extends Controller
         $sort = $request->get('sort', 'created_at');
         $direction = $request->get('direction', 'asc');
 
-        $products = Product::with('images')->orderBy($sort, $direction)->get();
+        $products = Product::with('images')
+            ->orderBy($sort, $direction)
+            ->paginate(12)
+            ->withQueryString();
+
 
         return view('general.catalog.products', compact('products'));
     }
@@ -192,7 +196,7 @@ class ProductController extends Controller
         $direction = $request->input('direction', 'desc');
 
         $products = $query->orderBy($sort, $direction)
-            ->paginate(12) // << заменили get() на paginate()
+            ->paginate(12)
             ->withQueryString();
 
         $categories = CategoryType::all();
@@ -204,19 +208,19 @@ class ProductController extends Controller
     {
         $query = Product::with('images');
 
-        // Поиск по имени
-        if ($request->filled('search')) {
-            $query->where('name', 'LIKE', '%' . $request->input('search') . '%');
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->where('name', 'ILIKE', "%{$search}%");
         }
 
-        // Сортировка
-        $sort = $request->input('sort', 'created_at');
-        $direction = $request->input('direction', 'desc');
+        if ($request->has('sort') && in_array($request->sort, ['price', 'created_at'])) {
+            $direction = $request->direction === 'asc' ? 'asc' : 'desc';
+            $query->orderBy($request->sort, $direction);
+        } else {
+            $query->orderBy('created_at', 'desc');
+        }
 
-        // Пагинация с сохранением параметров
-        $products = $query->orderBy($sort, $direction)
-            ->paginate(12)
-            ->withQueryString();
+        $products = $query->paginate(12);
 
         return view('general.main_page.main', compact('products'));
     }

@@ -15,9 +15,10 @@ class AdminOrderController extends Controller
         return response()->json(['message' => 'Status updated']);
     }
 
+
     public function index()
     {
-        $orders = Order::with(['products'])->where('status', 'processing')->get();
+        $orders = Order::with(['user', 'nonUser'])->latest()->get();
         return view('general.basket.admin-basket', compact('orders'));
     }
 }

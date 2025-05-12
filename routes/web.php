@@ -8,6 +8,7 @@ use App\Http\Controllers\BasketController;
 use App\Http\Controllers\ProductController;
 use App\Models\Product;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminOrderController;
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
@@ -26,20 +27,20 @@ Route::delete('/products/{product}/images/{image}', [ProductController::class, '
 
 Route::get('/main-page', [ProductController::class, 'main'])->name('main.page');
 
-// Route::get('/main-page', function () {
-//     $products = Product::with('images')->latest()->get();
-//     return view('general.main_page.main', compact('products'));
-// });
 
-Route::get('/', function () {
-    $products = Product::with('images')->latest()->get();
-    return view('general.main_page.main', compact('products'));
-});
+Route::get('/', [ProductController::class, 'main'])->name('main.page');
 
-Route::view('/login', 'auth.login.login');
+
+// Route::view('/login', 'auth.login.login');
+
+Route::view('/login', 'auth.login.login')->name('login');
+
 
 Route::view('/error', 'error.error');
 Route::view('/admin/basket', 'general.basket.admin-basket');
+
+
+Route::get('/admin/basket', [AdminOrderController::class, 'index']);
 
 Route::get('/admin/catalog', [ProductController::class, 'adminCatalog'])->name('admin.catalog');
 

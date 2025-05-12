@@ -29,11 +29,11 @@
           </div>
           <div class="col-md-9">
             @auth
-            @php
-            $user = Auth::user();
-          @endphp
-            <h4 class="fw-normal">{{ $user->name }} {{ $user->surname }}</h4>
-            <p class="text-muted mb-1">{{ $user->email }}</p>
+          @php
+          $user = Auth::user();
+        @endphp
+          <h4 class="fw-normal">{{ $user->name }} {{ $user->surname }}</h4>
+          <p class="text-muted mb-1">{{ $user->email }}</p>
       @else
         <h4 class="fw-normal">Guest</h4>
         <p class="text-muted mb-1">unknown@example.com</p>

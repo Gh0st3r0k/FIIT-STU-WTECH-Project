@@ -29,11 +29,11 @@
           </div>
           <div class="col-md-9">
             @auth
-          @php
-          $user = Auth::user();
-        @endphp
-          <h4 class="fw-normal">{{ $user->name }} {{ $user->surname }}</h4>
-          <p class="text-muted mb-1">{{ $user->email }}</p>
+            @php
+            $user = Auth::user();
+          @endphp
+            <h4 class="fw-normal">{{ $user->name }} {{ $user->surname }}</h4>
+            <p class="text-muted mb-1">{{ $user->email }}</p>
       @else
         <h4 class="fw-normal">Guest</h4>
         <p class="text-muted mb-1">unknown@example.com</p>
@@ -63,7 +63,7 @@
   Add Product
 </button>
 
-<!-- Модальное окно с полной рабочей формой -->
+<!-- Модальное окно с формой добавления продукта (обновлено) -->
 <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content p-3">
@@ -84,14 +84,35 @@
               <label for="images" class="form-label mt-2">Product images</label>
               <input type="file" name="images[]" class="form-control" accept="image/*" multiple>
             </div>
+            <div class="col-12 mt-3">
+              <label class="form-label fw-bold">Choose Category</label>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="category_type" id="cat1" value="1" required>
+                <label class="form-check-label" for="cat1">Headphones</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="category_type" id="cat2" value="2">
+                <label class="form-check-label" for="cat2">Sport</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="category_type" id="cat3" value="3">
+                <label class="form-check-label" for="cat3">Gifts</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="category_type" id="cat4" value="4">
+                <label class="form-check-label" for="cat4">Pets</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="category_type" id="cat5" value="5">
+                <label class="form-check-label" for="cat5">Cosmetics</label>
+              </div>
+            </div>
           </div>
         </div>
-
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary w-100">Add Product</button>
         </div>
       </form>
-
-
     </div>
   </div>
+</div>
